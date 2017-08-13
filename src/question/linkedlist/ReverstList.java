@@ -1,12 +1,12 @@
-package list;
+package question.linkedlist;
 
-import utils.ListNode;
+import utils.Node;
 
 /**
  * Created by Jun on 2017/8/2.
  */
 public class ReverstList {
-    public ListNode reverseList(ListNode head) {
+    public Node reverseList(Node head) {
         return null;
     }
 }

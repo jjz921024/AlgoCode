@@ -1,12 +1,14 @@
-import utils.ListNode;
+package question.linkedlist;
 
-import java.util.*;
+import utils.Node;
+
+import java.util.ArrayList;
 
 
 public class Palindrome {
-    public boolean isPalindrome(ListNode pHead) {
+    public boolean isPalindrome(Node pHead) {
         ArrayList<Integer> val = new ArrayList<Integer>();
-        while (pHead != null) {  //todo 不是pHead.next != null
+        while (pHead != null) {
             val.add(pHead.val);
             pHead = pHead.next;
         }

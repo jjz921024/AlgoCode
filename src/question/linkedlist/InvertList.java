@@ -1,4 +1,6 @@
-import utils.ListNode;
+package question.linkedlist;
+
+import utils.Node;
 
 import java.util.ArrayList;
 
@@ -9,8 +11,8 @@ import java.util.ArrayList;
 
 
 public class InvertList {
-    public ListNode FindKthToTail(ListNode head, int k) {
-        ArrayList<ListNode> tmp = new ArrayList<>();
+    public Node FindKthToTail(Node head, int k) {
+        ArrayList<Node> tmp = new ArrayList<>();
         if (head == null) return null;
         else {
             while (head != null) {
@@ -24,8 +26,8 @@ public class InvertList {
     }
 
 
-    public boolean removeNode(ListNode pNode) {
-        ListNode tmp = pNode;
+    public boolean removeNode(Node pNode) {
+        Node tmp = pNode;
         pNode = pNode.next;
         return tmp.next == null ? false : true;
     }

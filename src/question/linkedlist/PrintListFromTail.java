@@ -1,5 +1,5 @@
-package list;
-import utils.ListNode;
+package question.linkedlist;
+import utils.Node;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -14,7 +14,7 @@ import java.util.Stack;
  */
 public class PrintListFromTail {
     ArrayList<Integer> result = new ArrayList<>();
-    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+    public ArrayList<Integer> printListFromTailToHead(Node listNode) {
         if (listNode != null) {
             printListFromTailToHead(listNode.next);
             result.add(listNode.val);
@@ -24,7 +24,7 @@ public class PrintListFromTail {
 
 
     //栈
-    public ArrayList<Integer> printListFromTailToHead1(ListNode listNode) {
+    public ArrayList<Integer> printListFromTailToHead1(Node listNode) {
         Stack<Integer> stack = new Stack<>();
         while (listNode != null) {
             stack.push(listNode.val);

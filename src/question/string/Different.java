@@ -1,4 +1,4 @@
-import java.util.*;
+package question.string;
 
 public class Different {
     public boolean checkDifferent(String iniString) {

@@ -3,11 +3,11 @@ package utils;
 /**
  * Created by Jun on 2017/8/2.
  */
-public class ListNode {
+public class Node {
     public int val;
-    public ListNode next = null;
+    public Node next = null;
 
-    ListNode(int val) {
+    public Node(int val) {
         this.val = val;
     }
 }
