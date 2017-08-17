@@ -1,7 +1,7 @@
 package datastructure.tree;
 
 
-import datastructure.queue.Queue;
+import datastructure.queue.ArrayQueue;
 
 /**
  * Created by Jun on 2017/6/19.
@@ -27,7 +27,7 @@ public class BinaryTree {
     }
 
     public void breadthFirstTravel(BinaryTreeNode tn) {
-        Queue queue = new Queue(50);
+        ArrayQueue queue = new ArrayQueue(50);
 
         queue.enQueue(tn.value);
         while (queue.getQueueLength() != 0) {
