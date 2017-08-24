@@ -9,7 +9,7 @@ import java.util.Random;
  */
 
 public class LinkedList {
-    private Node head;
+    public Node head;
 
     /*创建长度为n的链表，值随机*/
     public void create(int n){
@@ -160,18 +160,6 @@ public class LinkedList {
         }
         head = prev;
     }
-
-    //重写  工具类
-    /*public static Node reverse(Node head) {
-        Node prev = null;
-        while(head!=null){
-            Node tmp = head.next;
-            head.next = prev;
-            prev = head;
-            head = tmp;
-        }
-        return prev;
-    }*/
 
     @Test
     public void test(){

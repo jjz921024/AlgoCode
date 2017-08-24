@@ -1,12 +1,17 @@
 package question.linkedlist;
 
 import utils.Node;
-
 import java.util.ArrayList;
 
-
+/**
+ * 判断一个链表是否是回文结构
+ */
 public class Palindrome {
-    public boolean isPalindrome(Node pHead) {
+    /**
+     *  将链表转成数组
+     *  该方法不推荐  空间复杂度为0(n)
+     */
+    public boolean isPalindrome1(Node pHead) {
         ArrayList<Integer> val = new ArrayList<Integer>();
         while (pHead != null) {
             val.add(pHead.val);
@@ -19,7 +24,6 @@ public class Palindrome {
             if (val.get(j).intValue() != val.get(--k).intValue())
                 return false;
         }
-
         return true;
     }
 
