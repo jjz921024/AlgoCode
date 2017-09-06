@@ -5,10 +5,12 @@ import utils.Node;
 
 /**
  * Created by Jun on 2017/8/2.
- * 工具类， 反转链表
  */
 public class ReverseList {
 
+    /**
+     * 反转单链表
+     */
     public static Node reverseList(Node head) {
         Node prev = null;
         Node next = null;
@@ -21,6 +23,26 @@ public class ReverseList {
         }
         return prev;
     }
+
+
+    /*public static Node reversePartList(Node head, int from, int to) {
+        int len = 0;
+        Node fPre = null;
+        Node fPos = null;
+        Node cur = head;
+        // 找from前一个节点和to后一个节点
+        while (cur != null) {
+            len++;
+            fPre = (len == from - 1) ? cur : fPre;
+            fPos = (len == to + 1) ? cur : fPos;
+            cur = cur.next;
+        }
+        if (from > to || from < 1 || to > len) {
+            return head;
+        }
+
+
+    }*/
 
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();

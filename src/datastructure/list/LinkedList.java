@@ -143,6 +143,20 @@ public class LinkedList {
         System.out.println();
     }
 
+    /**
+     *  打印环形链表
+     */
+    public void printRound(){
+        Node node = head;
+        System.out.print(node.hashCode()+": (" + node.val + "," + (node.next == null ? null : node.next.hashCode()) +")" + " ==> ");
+        node = node.next;
+        while (node != null && node != head) {
+            System.out.print(node.hashCode()+": (" + node.val + "," + (node.next == null ? null : node.next.hashCode()) +")" + " ==> ");
+            node = node.next;
+        }
+        System.out.println();
+    }
+
     public void clear(){
         head = null;
     }

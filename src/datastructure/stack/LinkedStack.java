@@ -1,9 +1,8 @@
 package datastructure.stack;
 
-import java.util.*;
-
 /**
  * Created by Jun on 2017/4/9.
+ * 自己实现的链栈
  */
 class StackNode {
     Object data;

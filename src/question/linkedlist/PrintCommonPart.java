@@ -5,9 +5,8 @@ import utils.Node;
 
 /**
  * Created by Jun on 2017/8/24.
- *  每个方法是一道题
  */
-public class LinkedListStatic {
+public class PrintCommonPart {
 
     /**
      * 打印两个有序链表的公共部分， 值相同的部分

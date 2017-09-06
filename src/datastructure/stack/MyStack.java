@@ -2,6 +2,7 @@ package datastructure.stack;
 
 /**
  * Created by Jun on 2017/4/9.
+ * 自己实现的栈结构，底层是数组
  */
 public class MyStack {
     private Integer[] data = null;  //下标为0的是栈底

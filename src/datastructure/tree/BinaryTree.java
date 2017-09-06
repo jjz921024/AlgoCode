@@ -1,37 +1,173 @@
 package datastructure.tree;
 
 
-import datastructure.queue.ArrayQueue;
+import utils.BinTreeNode;
+import utils.Node;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created by Jun on 2017/6/19.
+ * 自己实现的二叉树
  */
 public class BinaryTree {
-    int[] data = new int[]{1,2,3,0,4,0,5};
-    int count = 0;
 
-    public BinaryTreeNode createBiTree(BinaryTreeNode tn, int[] data) {
-        if (data != null && count < data.length) {
-            if (data[count] == 0) {
-                return null;
-            } else {
-                tn.value = data[count++];
-                BinaryTreeNode lnode = new BinaryTreeNode();
-                BinaryTreeNode rnode = new BinaryTreeNode();
-
-                tn.lnode = createBiTree(lnode, data);
-                tn.rnode = createBiTree(rnode, data);
-            }
+    /**
+     * 通过先序遍历实现二叉树的序列化
+     */
+    public String serialByPre(BinTreeNode head) {
+        if (head == null) {
+            return "#!";
         }
-        return tn;
+        String res = head.val + "!";
+        res += serialByPre(head.left);
+        res += serialByPre(head.right);
+        return res;
     }
 
-    public void breadthFirstTravel(BinaryTreeNode tn) {
-        ArrayQueue queue = new ArrayQueue(50);
-
-        queue.enQueue(tn.value);
-        while (queue.getQueueLength() != 0) {
-            
+    /**
+     * 将一个字符串通过先序遍历反序列化成二叉树
+     */
+    public BinTreeNode reconByPreString(String preStr) {
+        String[] split = preStr.split("!");
+        LinkedList<String> queue = new LinkedList<>();
+        for (String s : split) {
+            queue.offer(s);
         }
+        return reconPreOrder(queue);
+    }
+    public BinTreeNode reconPreOrder(Queue<String> queue) {
+        String value = queue.poll();
+        if (value.equals("#")) {
+            return null;
+        }
+        BinTreeNode head = new BinTreeNode(Integer.valueOf(value));
+        head.left = reconPreOrder(queue);
+        head.right = reconPreOrder(queue);
+        return head;
+    }
+
+
+    /**
+     * 递归方法的 先序、中序、后序遍历
+     */
+    public void preOrder(BinTreeNode head) {
+        if (head == null)
+            return;
+        System.out.print(head.val + "!");
+        preOrder(head.left);
+        preOrder(head.right);
+    }
+    public void inOrder(BinTreeNode head) {
+        if (head == null)
+            return;
+        inOrder(head.left);
+        System.out.print(head.val + "!");
+        inOrder(head.right);
+    }
+    public void posOrder(BinTreeNode head) {
+        if (head == null)
+            return;
+        posOrder(head.left);
+        posOrder(head.right);
+        System.out.print(head.val + "!");
+    }
+
+    /**
+     * 非递归方法实现前序遍历
+     * 利用栈，先压入右孩子，再压左孩子
+     */
+    public void preOrderUnRecur(BinTreeNode head) {
+        Stack<BinTreeNode> stack = new Stack<>();
+        if (head != null) {
+            stack.push(head);
+            while (!stack.isEmpty()) {
+                BinTreeNode cur = stack.pop();
+                System.out.print(cur.val + "!");
+                if (cur.right != null)
+                    stack.push(cur.right);
+                if (cur.left != null)
+                    stack.push(cur.left);
+            }
+            System.out.println();
+        }
+    }
+
+    /**
+     * 非递归方法的中序遍历
+     * 先压入左子树，再压入右子树
+     */
+    public void inOrderUnRecur(BinTreeNode head) {
+        Stack<BinTreeNode> stack = new Stack<>();
+        while (!stack.isEmpty() || head != null) {
+            if (head != null) {
+                stack.push(head);
+                head = head.left;
+            } else {
+                head = stack.pop();
+                System.out.print(head.val + "!");
+                head = head.right;
+            }
+        }
+        System.out.println();
+    }
+
+
+    /**
+     * 层次遍历，宽度优先遍历
+     * 利用队列
+     */
+    public void levelTravel(BinTreeNode head) {
+        if (head == null)
+            return;
+        LinkedList<BinTreeNode> queue = new LinkedList<>();
+        queue.offer(head);
+        while (!queue.isEmpty()) {
+            head = queue.poll();
+            if (head.left != null)
+                queue.offer(head.left);
+            if (head.right != null)
+                queue.offer(head.right);
+            System.out.print(head.val + "!");
+        }
+        System.out.println();
+    }
+
+    /**
+     * 深度优先遍历， 优先走完一条分支左侧的节点
+     * 利用栈，先压右节点，再压左节点
+     */
+    public void deepTravel(BinTreeNode head) {
+        if (head == null)
+            return;
+        Stack<BinTreeNode> stack = new Stack<>();
+        stack.push(head);
+        while (!stack.isEmpty()) {
+            head = stack.pop();
+            if (head.right != null)
+                stack.push(head.right);
+            if (head.left != null)
+                stack.push(head.left);
+            System.out.print(head.val + "!");
+        }
+        System.out.println();
+    }
+
+
+
+
+    public static void main(String[] args) {
+        BinaryTree binaryTree = new BinaryTree();
+        BinTreeNode head = binaryTree.reconByPreString("1!2!#!3!#!#!4!5!#!#!#!");
+        System.out.println(binaryTree.serialByPre(head));
+
+        binaryTree.inOrder(head);
+        System.out.println();
+        binaryTree.inOrderUnRecur(head);
+
+        binaryTree.levelTravel(head);
+        binaryTree.deepTravel(head);
     }
 }

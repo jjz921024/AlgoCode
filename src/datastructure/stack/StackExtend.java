@@ -5,6 +5,7 @@ import java.util.Stack;
 
 /**
  * Created by Jun on 2017/8/16.
+ * 继承stack类，扩展打印栈的方法，方便测试
  */
 public class StackExtend extends Stack{
 

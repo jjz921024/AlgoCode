@@ -6,6 +6,7 @@ import java.util.Random;
 
 /**
  * Created by Jun on 2017/8/16.
+ * 继承LinkedList的队列，扩展了打印的方法，方便测试
  */
 public class QueueExtend extends LinkedList{
 

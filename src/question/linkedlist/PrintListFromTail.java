@@ -1,4 +1,5 @@
 package question.linkedlist;
+import datastructure.list.LinkedList;
 import utils.Node;
 
 import java.util.ArrayList;
@@ -39,5 +40,23 @@ public class PrintListFromTail {
             result.add(stack.pop());
         }
         return result;
+    }
+
+    /**
+     * 递归打印
+     */
+    public static void printListFromTailToHead3(Node listNode) {
+        if (listNode != null) {
+            printListFromTailToHead3(listNode.next);
+            System.out.print(listNode.val + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        LinkedList linkedList = new LinkedList();
+        linkedList.createFromArray(new int[]{1,2,3,4,5});
+        linkedList.print();
+
+        printListFromTailToHead3(linkedList.head);
     }
 }
