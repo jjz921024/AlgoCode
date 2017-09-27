@@ -1,6 +1,5 @@
-package question.exam;
+package exam;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -11,7 +10,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()){
             int n = scanner.nextInt();
-            int m = scanner.nextInt();
         }
     }
 }

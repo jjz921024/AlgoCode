@@ -1,6 +1,6 @@
 package question.linkedlist;
 import datastructure.list.LinkedList;
-import utils.Node;
+import utils.node.Node;
 
 import java.util.ArrayList;
 import java.util.Stack;

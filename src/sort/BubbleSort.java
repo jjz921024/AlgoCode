@@ -25,7 +25,7 @@ public class BubbleSort {
     }
 
     /**
-     *
+     * 冒泡排序
      */
     public static void bubbleSort2(ListSort list) {
         for (int i = 0; i < list.getLength(); i++) {
@@ -38,6 +38,7 @@ public class BubbleSort {
         }
     }
 
+    //冒泡排序改进
     public static void bubbleSort3(ListSort list) {
         //在比较时判断序列是否有序
         boolean flag = true;

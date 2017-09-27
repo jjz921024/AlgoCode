@@ -1,10 +1,8 @@
-package question.exam;
+package exam;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.Scanner;
 
 /**
  * Created by Jun on 2017/9/8.

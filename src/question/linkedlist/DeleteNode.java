@@ -1,7 +1,7 @@
 package question.linkedlist;
 
 import datastructure.list.LinkedList;
-import utils.Node;
+import utils.node.Node;
 
 /**
  * Created by Jun on 2017/8/25.

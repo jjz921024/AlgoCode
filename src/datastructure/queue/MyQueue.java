@@ -1,7 +1,5 @@
 package datastructure.queue;
 
-import utils.Node;
-
 /**
  * Created by Jun on 2017/4/10.
  */

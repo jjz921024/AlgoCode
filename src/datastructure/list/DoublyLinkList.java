@@ -2,8 +2,7 @@ package datastructure.list;
 
 
 import org.junit.Test;
-import utils.DoublyNode;
-import utils.Node;
+import utils.node.DoublyNode;
 
 import java.util.Random;
 

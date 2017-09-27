@@ -11,7 +11,7 @@ import utils.sort.ListSort;
 public class InsertSort {
 
     public static void insertSort(ListSort list) {
-        //将第一个数当作基准
+        //将第一个数当作基准 i=1
         for (int i=1; i<list.getLength(); i++) {
             // 当前待排序的数，与已排序的基准比较
             if (list.getData(i) < list.getData(i-1)) {

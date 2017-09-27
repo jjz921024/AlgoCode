@@ -1,7 +1,7 @@
 package datastructure.list;
 
 import org.junit.Test;
-import utils.Node;
+import utils.node.Node;
 import java.util.Random;
 
 /**

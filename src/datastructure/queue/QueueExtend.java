@@ -1,6 +1,5 @@
 package datastructure.queue;
 
-import utils.Node;
 import java.util.LinkedList;
 import java.util.Random;
 

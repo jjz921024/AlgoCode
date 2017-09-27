@@ -1,4 +1,4 @@
-package utils;
+package utils.node;
 
 /**
  * Created by Jun on 2017/8/2.
