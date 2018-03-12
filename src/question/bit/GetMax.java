@@ -23,7 +23,7 @@ public class GetMax {
     }
 
     // 翻转0和1
-    public static int flip(int n) {
+    static int flip(int n) {
         return n ^ 1;
     }
 
