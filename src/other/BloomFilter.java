@@ -10,8 +10,6 @@ import java.util.Random;
  */
 public class BloomFilter<E> {
     private BitSet bitset;
-    private static final int BITSET_SIZE = 1 << 16;
-    private static final int HASH_NUM = 8;
 
     private int bitSetSize;
     private int numHashFunc;
@@ -22,6 +20,13 @@ public class BloomFilter<E> {
         bitset = new BitSet(bitSetSize);
     }
 
+    /*
+    根据期望失误率和预测元素个数，计算最优bitSet大小和哈希函数个数
+     */
+    public BloomFilter(double falsePositiveProbability, int expectedNumberOfElements) {
+        this((int) (Math.ceil(-Math.log(falsePositiveProbability) * expectedNumberOfElements / Math.pow(Math.log(2), 2))),
+                (int) (Math.ceil(Math.log(2) * (-Math.log(falsePositiveProbability) * expectedNumberOfElements / Math.pow(Math.log(2), 2)) / expectedNumberOfElements)));
+    }
 
     public void add(E obj){
         int[] indexes = getHashIndexes(obj);
@@ -56,10 +61,18 @@ public class BloomFilter<E> {
         return indexes;
     }
 
-    private double getFalsePositiveProbability(double numberOfElements) {
+    // 布隆过滤器真实失误率
+    public double getFalsePositiveProbability(int numberOfElements) {
         // (1 - e^(-k * n / m)) ^ k
-        return Math.pow((1 - Math.exp(-numHashFunc * (double) numberOfElements
+        return Math.pow((1 - Math.exp(-numHashFunc * numberOfElements
                 / (double) bitSetSize)), numHashFunc);
+
+    }
+
+    public static void main(String[] args) {
+        BloomFilter<String> stringBloomFilter = new BloomFilter<String>(0.0001, 1 << 10);
+        System.out.println(stringBloomFilter.bitSetSize);
+        System.out.println(stringBloomFilter.numHashFunc);
 
     }
 }
