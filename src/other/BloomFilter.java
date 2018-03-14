@@ -21,9 +21,10 @@ public class BloomFilter<E> {
     }
 
     /*
-    根据期望失误率和预测元素个数，计算最优bitSet大小和哈希函数个数
+        根据期望失误率和预测元素个数，计算最优bitSet大小和哈希函数个数
+        e.g: new BloomFilter<String>(0.0001, 1.0E5)
      */
-    public BloomFilter(double falsePositiveProbability, int expectedNumberOfElements) {
+    public BloomFilter(double falsePositiveProbability, double expectedNumberOfElements) {
         this((int) (Math.ceil(-Math.log(falsePositiveProbability) * expectedNumberOfElements / Math.pow(Math.log(2), 2))),
                 (int) (Math.ceil(Math.log(2) * (-Math.log(falsePositiveProbability) * expectedNumberOfElements / Math.pow(Math.log(2), 2)) / expectedNumberOfElements)));
     }
@@ -66,13 +67,5 @@ public class BloomFilter<E> {
         // (1 - e^(-k * n / m)) ^ k
         return Math.pow((1 - Math.exp(-numHashFunc * numberOfElements
                 / (double) bitSetSize)), numHashFunc);
-
-    }
-
-    public static void main(String[] args) {
-        BloomFilter<String> stringBloomFilter = new BloomFilter<String>(0.0001, 1 << 10);
-        System.out.println(stringBloomFilter.bitSetSize);
-        System.out.println(stringBloomFilter.numHashFunc);
-
     }
 }
