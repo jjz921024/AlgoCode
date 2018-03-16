@@ -22,7 +22,8 @@ public class BloomFilter<E> {
 
     /*
         根据期望失误率和预测元素个数，计算最优bitSet大小和哈希函数个数
-        e.g: new BloomFilter<String>(0.0001, 1.0E5)
+        因为int类型范围限制，在万分之一的失误率下，期望输入数据最大为1.1亿个
+        e.g: new BloomFilter<String>(0.0001, 1.1E8)
      */
     public BloomFilter(double falsePositiveProbability, double expectedNumberOfElements) {
         this((int) (Math.ceil(-Math.log(falsePositiveProbability) * expectedNumberOfElements / Math.pow(Math.log(2), 2))),
