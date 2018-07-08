@@ -6,7 +6,7 @@
 
     <groupId>src</groupId>
     <artifactId>AlgoCode</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
 
 
@@ -37,6 +37,66 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!--是否要把第三方jar放到manifest的classpath中-->
+                            <addClasspath>true</addClasspath>
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <!--生成的manifest中classpath的前缀，因为要把第三方jar放到lib目录下，所以classpath的前缀是lib/-->
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- 应用的main class-->
+                            <mainClass>Test</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- 打fat-jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>Test</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <!--下面是为了使用 mvn package命令，如果不加则使用mvn assembly-->
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--另一种打包插件-->
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
         </plugins>
     </build>
 
