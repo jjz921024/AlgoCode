@@ -38,6 +38,7 @@
                 </configuration>
             </plugin>
 
+            <!--打包时要遵循maven目录结构，src/main/java-->     
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
