@@ -16,9 +16,7 @@ public class L155_MinStack {
         }
 
         public void push(int x) {
-            if (stackMin.empty()) {
-                stackMin.push(x);
-            } else if (stackMin.peek() >= x){
+            if (stackMin.isEmpty() || stackMin.peek() >= x) {
                 stackMin.push(x);
             }
             stack.push(x);
