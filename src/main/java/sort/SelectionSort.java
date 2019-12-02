@@ -1,7 +1,6 @@
 package sort;
 
-import utils.sort.ListSort;
-import utils.sort.Util;
+import utils.sort.SortUtil;
 
 /**
  * Created by Jun on 2017/6/14.
@@ -10,19 +9,19 @@ import utils.sort.Util;
  */
 public class SelectionSort {
 
-    public static void selectSort(ListSort list) {
+    public static void selectSort(int[] array) {
         int min = 0;
-        for (int i = 0; i < list.getLength(); i++) {
+        for (int i = 0; i < array.length; i++) {
             min = i;
             //选定的关键字，跟后面的数据比较
-            for (int j = i; j < list.getLength(); j++) {
-                if (list.getData(min) > list.getData(j)) {
+            for (int j = i; j < array.length; j++) {
+                if (array[min] > array[j]) {
                     min = j;  //找到最小数据的下标
                 }
             }
             //第i小的数据不在第i个位置
             if (min != i) {
-                Util.swap(list, min, i);
+                SortUtil.swap(array, min, i);
             }
         }
     }

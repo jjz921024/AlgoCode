@@ -1,6 +1,7 @@
 package algo.matrix;
 
-import utils.sort.Util;
+import utils.sort.SortUtil;
+
 import java.util.Arrays;
 
 /**
@@ -17,10 +18,10 @@ public class EvenOrOdd {
         int idx = arr.length - 1;
         while (even <= idx && odd <= idx) {
             if (arr[idx] % 2 == 0) {
-                Util.swap(arr, idx, even);
+                SortUtil.swap(arr, idx, even);
                 even += 2;
             } else {
-                Util.swap(arr, odd, idx);
+                SortUtil.swap(arr, odd, idx);
                 odd += 2;
             }
         }
