@@ -3,8 +3,8 @@ package sort;
 import utils.sort.SortUtil;
 
 /**
- * Created by Jun on 2017/6/14.
- * 选择排序  在一轮排序中，通过多次比较找出当轮最小的数，再进行交换
+ * 选择排序
+ * 在一轮排序中，通过多次比较找出当轮最小的数，再进行交换
  * 减少了交换的次数
  */
 public class SelectionSort {

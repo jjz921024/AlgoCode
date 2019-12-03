@@ -3,16 +3,18 @@ package sort;
 import utils.sort.SortUtil;
 
 /**
- * Created by Jun on 2017/9/10.
- * 堆排序：从待排序列(从下往上，从右到左非叶结点)构建大/小顶堆，再将堆顶元素到末尾，剩余结点重新构建堆结构
+ * 堆排序
+ * 1. 将待排序列构建成二叉堆 （从小到大排序构建最大堆，从大到小排序构建最小堆）
+ * 2. 将堆顶元素替换到二叉堆的末尾，调整堆产生新的堆顶
  */
 public class HeapSort {
 
     public static void heapSort(int[] array) {
-        //非叶结点构建堆
+        // 构建最大堆
         for (int i = array.length / 2; i >= 0; i--)
             heapAdjust(array, i, array.length);
 
+        // 循环删除堆顶元素，移动到集合尾部，调整堆产生新的堆顶
         for (int i = array.length - 1; i >= 0; i--) {
             //将根结点交换到最后
             SortUtil.swap(array, 0, i);
@@ -21,6 +23,12 @@ public class HeapSort {
         }
     }
 
+    /**
+     * 下沉调整
+     * @param array 待调整的堆
+     * @param i 要下沉的父节点
+     * @param length 堆的有效大小
+     */
     private static void heapAdjust(int[] array, int i, int length) {
         int temp = array[i];
         //当前结点序号i，其左还是序号为2i，右孩子序号2i+1  调整子树

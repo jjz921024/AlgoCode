@@ -1,8 +1,7 @@
 package sort;
 
 /**
- * Created by Jun on 2017/9/8.
- * 简单插入排序
+ * 插入排序
  * 设一个已排序的有序表基准，将后面未排序的数看作是往有序表中插入
  */
 public class InsertSort {

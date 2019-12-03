@@ -8,6 +8,8 @@ import org.junit.Test;
  * 在数组中查找指定值的元素，返回元素所在数组下标。未找到返回-1
  */
 public class BinarySearch {
+
+    // todo 递归版本
     public static int binarySearch(int[] a, int key) {
         int low = 0;
         int high = a.length;

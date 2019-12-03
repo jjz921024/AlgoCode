@@ -8,7 +8,7 @@ import java.util.Stack;
  * Created by Jun on 2017/8/16.
  * 用一个栈对另一个栈进行排序，栈顶到栈底数据由大到小
  */
-public class sortStack {
+public class SortStack {
 
     public static void sortStackByStack(Stack<Integer> stack) {
         Stack<Integer> helpStack = new Stack<>();

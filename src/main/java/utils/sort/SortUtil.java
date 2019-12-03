@@ -14,7 +14,7 @@ public class SortUtil {
     }
 
     //用于测试排序算法的数组，能实现复位功能
-    public int[] data;
+    private int[] data;
     private int[] dataBak;
 
     public SortUtil() {
@@ -40,5 +40,9 @@ public class SortUtil {
                 return false;
         }
         return true;
+    }
+
+    public int[] getData() {
+        return data;
     }
 }
