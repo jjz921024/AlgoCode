@@ -13,6 +13,14 @@ public class SortUtil {
         arr[j] = temp;
     }
 
+    public static boolean isSorted(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i - 1] > arr[i])
+                return false;
+        }
+        return true;
+    }
+
     //用于测试排序算法的数组，能实现复位功能
     private int[] data;
     private int[] dataBak;
@@ -23,23 +31,25 @@ public class SortUtil {
 
     public SortUtil(int size) {
         data = new int[size];
+        dataBak = new int[size];
         Random random = new Random();
         for (int i = 0; i < size; i++) {
             data[i] = random.nextInt(1000);
+            dataBak[i] = data[i];
         }
-        dataBak = data.clone();
     }
 
+    // 返回值相同的数组，不改变data数组的引用
     public void reset() {
-        data = dataBak.clone();
+        System.arraycopy(dataBak, 0, data, 0, data.length);
     }
 
-    public boolean isSorted() {
-        for (int i=1; i<data.length; i++) {
-            if (data[i-1] > data[i])
-                return false;
+    public void shuffle() {
+        Random random = new Random();
+        for (int i = 0; i < data.length; i++) {
+            data[i] = random.nextInt(1000);
+            dataBak[i] = data[i];
         }
-        return true;
     }
 
     public int[] getData() {

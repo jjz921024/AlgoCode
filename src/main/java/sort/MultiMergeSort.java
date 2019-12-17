@@ -57,14 +57,4 @@ public class MultiMergeSort {
             return array.length > point;
         }
     }
-
-    public static void main(String[] args) {
-        int[] a = {1,1,3,5,6,8,11,25};
-        int[] b = {5,6,9,14,16,20,21};
-        int[] c = {2,4,7,9,11,21,31,51};
-        int[] d = {10,22,23,31,34,50};
-
-        int[] sort = kMergeSort(a, b, c, d);
-        System.out.println(Arrays.toString(sort));
-    }
 }

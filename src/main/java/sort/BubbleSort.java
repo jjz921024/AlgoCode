@@ -3,7 +3,7 @@ package sort;
 import utils.sort.SortUtil;
 
 /**
- * 冒泡排序, 属于交换排序的一种
+ * 冒泡排序
  * 时间复杂度  平均：O(n^2), 最差：O(n^2) 最佳：O(n)
  * 空间复杂读  O(1)
  * 稳定性：稳定
@@ -19,7 +19,7 @@ public class BubbleSort {
         for (int i = 0; i < array.length; i++) {
             for (int j = i + 1; j < array.length; j++) {
                 if (array[i] > array[j]) {
-                    SortUtil.swap(array, i, j);
+                    SortUtil.swap(array, i, j); // 逐个比较
                 }
             }
         }
@@ -34,21 +34,14 @@ public class BubbleSort {
             // 每次将最大的元素排到最后面
             for (int j = 0; j < array.length - 1 - i; j++) {
                 if (array[j] > array[j + 1]) {
-                    SortUtil.swap(array, j, j + 1);
+                    SortUtil.swap(array, j, j + 1); //两两相邻
                 }
             }
-        }
-    }
-
-    // 从后往前排，先排最大元素
-    public static void bubbleSort3(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            //从后往前，外层排序会将前i个最小的值排序，所以j > i
-            for (int j = array.length - 1; j > i; j--) {
+            /*for (int j = array.length - 1; j > i; j--) {
                 if (array[j - 1] > array[j]) {
-                    SortUtil.swap(array, j - 1, j); //两两相邻
+                    SortUtil.swap(array, j - 1, j);
                 }
-            }
+            }*/
         }
     }
 
@@ -57,15 +50,15 @@ public class BubbleSort {
      * 在每一轮冒泡过程中，**若没有发生元素之间的位置交换**，则说明序列已经有序，可以中止排序
      * 提前知道待排序列已经处于有序状态，提前结束排序，进一步减少无意义的比较和交换
      */
-    public static void bubbleSort4(int[] array) {
+    public static void bubbleSort3(int[] array) {
         // 标志位表示序列目前还无序
         boolean unsorted = true;
-        for (int i = 0; i < array.length && unsorted; i++) {
+        for (int i = 0; i < array.length - 1 && unsorted; i++) {
             // 先暂时设为有序
             unsorted = false;
-            for (int j = array.length - 1; j > i; j--) {
-                if (array[j - 1] > array[j]) {
-                    SortUtil.swap(array, j - 1, j);
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    SortUtil.swap(array, j, j + 1);
                     // 若发生元素交换，则说明前面序列不是有序的
                     unsorted = true;
                 }
@@ -80,7 +73,7 @@ public class BubbleSort {
      *
      * 例子， [3,4,2,1,5,6,7,8]中，后半部分元素(5开始)为有序区，但前几轮冒泡还是会对5，6，7，8进行比较
      */
-    public static void bubbleSort5(int[] array) {
+    public static void bubbleSort4(int[] array) {
         boolean unsorted = true;
         // 待排序区域的上边界
         int sortedIndex = array.length - 1;
