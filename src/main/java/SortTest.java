@@ -10,7 +10,7 @@ public class SortTest {
 
     @Before
     public void init() {
-        sortUtil = new SortUtil(2048);
+        sortUtil = new SortUtil(4096);
     }
 
     @Test
@@ -67,11 +67,13 @@ public class SortTest {
 
     @Test
     public void testSelection() {
-        int i = 5;
+        int i = 100;
+        int[] data = sortUtil.getData();
         while (i-- > 0) {
-            int[] data = sortUtil.getData();
             SelectionSort.selectSort(data);
             Assert.assertTrue(SortUtil.isSorted(data));
+            sortUtil.shuffle();
+            Assert.assertFalse(SortUtil.isSorted(data));
         }
     }
 
@@ -80,5 +82,24 @@ public class SortTest {
         int[] data = sortUtil.getData();
         InsertSort.insertSort(data);
         Assert.assertTrue(SortUtil.isSorted(data));
+    }
+
+    @Test
+    public void testShell() {
+        int[] data = sortUtil.getData();
+        int i = 100;
+        while (i-- > 0) {
+            ShellSort.shellSort(data);
+            Assert.assertTrue(SortUtil.isSorted(data));
+
+            sortUtil.reset();
+            Assert.assertFalse(SortUtil.isSorted(data));
+            ShellSort.shellSort2(data);
+            Assert.assertTrue(SortUtil.isSorted(data));
+
+            sortUtil.shuffle();
+            Assert.assertFalse(SortUtil.isSorted(data));
+        }
+
     }
 }
