@@ -7,7 +7,6 @@ package search;
 @SuppressWarnings("Duplicates")
 public class BinarySearch {
 
-    // todo 递归版本
     public static int binarySearch(int[] array, int target) {
         int low = 0;
         int high = array.length - 1;

@@ -1,6 +1,10 @@
 package sort;
 
-import utils.sort.SortUtil;
+import utils.SortUtil;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
 /**
  * 快速排序，属于交换排序的一种
@@ -24,14 +28,48 @@ public class QuickSort {
     public static void quickSort(int[] array, int low, int high) {
         int pivotIndex;
         if (low < high) {
-            pivotIndex = partition1(array, low, high);
+            pivotIndex = partition3(array, low, high);
             quickSort(array, low, pivotIndex - 1);
             quickSort(array, pivotIndex + 1, high);
         }
     }
 
     /**
-     * 双边循环法
+     * 非递归实现
+     * 维护一个栈，栈中保存每一次方法调用的参数
+     */
+    public static void qucikSort2(int[] array, int low, int high) {
+        Stack<Map<String, Integer>> stack = new Stack<>();
+        // 第一次调用的参数入栈
+        HashMap<String, Integer> paramMap = new HashMap<>();
+        paramMap.put("low", low);
+        paramMap.put("high", high);
+        stack.push(paramMap);
+
+        // 栈空时循环结束
+        while (!stack.isEmpty()) {
+            // 弹出参数，调用partition方法
+            Map<String, Integer> param = stack.pop();
+            int pivotIndex = partition3(array, param.get("low"), param.get("high"));
+
+            // 根据基准元素将参数分为两部分，分别入栈
+            if (param.get("low") < pivotIndex - 1) {
+                HashMap<String, Integer> lowParam = new HashMap<>();
+                lowParam.put("low", param.get("low"));
+                lowParam.put("high", pivotIndex - 1);
+                stack.push(lowParam);
+            }
+            if (param.get("high") > pivotIndex + 1) {
+                HashMap<String, Integer> highParam = new HashMap<>();
+                highParam.put("low", pivotIndex + 1);
+                highParam.put("high", param.get("high"));
+                stack.push(highParam);
+            }
+        }
+    }
+
+    /**
+     * 填坑法
      * 每轮将位于基准元素左边并大于它的元素交换，位于基准元素右边并小于它的元素交换
      */
     private static int partition1(int[] array, int low, int high) {
@@ -56,7 +94,7 @@ public class QuickSort {
     }
 
     /**
-     * 指针交换法
+     * 双边循环法 / 指针交换法
      * 在数列头尾设置low和high指针，从左右两端扫描数列
      * 从high指针开始，把所指向元素和基准元素比较，若大于等于pivot则向左移动，小于pivot则停止移动切换到low指针
      * 同理，若low指针指向元素小于等于pivot则向右移动，大于pivot则停止移动，这时交换low和high指向的元素
@@ -88,6 +126,32 @@ public class QuickSort {
         array[low] = pivot;
         array[startIndex] = temp;
         return low;
+    }
+
+    /**
+     * 单边循环法
+     * 设置一个mark指针指向数组开始位置，mark指针代表小于基准元素的边界区域
+     * 开始遍历，若遍历到的元素大于基准元素则继续
+     * 若小于基准元素，则mark指针右移一位，表示边界区域增大；
+     * 然后该元素和mark指针指向的元素交换，表示将该元素归纳到小于pivot的区域
+     */
+    private static int partition3(int[] array, int low, int high) {
+        int pivot = array[low];
+        int mark = low;
+
+        // 遍历元素
+        for (int i = mark + 1; i <= high; i++) {
+            // 小于基准元素时
+            if (array[i] < pivot) {
+                mark++;
+                SortUtil.swap(array, i, mark);
+            }
+        }
+
+        // 将pivot元素交换到mark指针指向的地方
+        array[low] = array[mark];
+        array[mark] = pivot;
+        return mark;
     }
 
 }

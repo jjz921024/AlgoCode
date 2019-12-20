@@ -1,6 +1,6 @@
 package sort;
 
-import utils.sort.SortUtil;
+import utils.SortUtil;
 
 /**
  * 选择排序
