@@ -1,56 +1,37 @@
 package datastructure.tree;
 
+import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
 
 /**
  * 二叉树实现
  */
 public class BinaryTree {
 
-    /**
-     * 通过先序遍历实现二叉树的序列化
-     */
-    public String serializeByPre(Node head) {
-        if (head == null) {
-            return "#!";
-        }
-        String res = head.val + "!";
-        res += serializeByPre(head.left);
-        res += serializeByPre(head.right);
-        return res;
-    }
-
-    /**
-     * 将一个字符串通过先序遍历反序列化成二叉树
-     */
-    public Node deserializeByPre(String str) {
-        String[] split = str.split("!");
-        LinkedList<String> queue = new LinkedList<>();
-        for (String s : split) {
-            queue.offer(s);
-        }
-        return reconPreOrder(queue);
-    }
-
-    public Node reconPreOrder(Queue<String> queue) {
-        String value = queue.poll();
-        if (value.equals("#")) {
+    // 创建二叉树, 链表中结点的顺序是二叉树前序
+    // 有将空结点表示出来的数组可以唯一确定一棵二叉树
+    public static Node create(LinkedList<Integer> input) {
+        if (input == null || input.isEmpty()) {
             return null;
         }
-        Node head = new Node(Integer.valueOf(value));
-        head.left = reconPreOrder(queue);
-        head.right = reconPreOrder(queue);
-        return head;
+        Integer data = input.removeFirst();
+        Node node = null;
+        if (data != null) {
+            node = new Node(data);
+            // 先写根结点
+            node.setLeft(create(input));
+            node.setRight(create(input));
+        }
+        return node;
     }
 
-
-
-
     public static void main(String[] args) {
-        BinaryTree binaryTree = new BinaryTree();
-        Node head = binaryTree.deserializeByPre("1!2!#!3!#!#!4!5!#!#!#!");
-        System.out.println(binaryTree.serializeByPre(head));
+        // 1, 2, null, 3, null, null, 4, 5, null, null, null
+        // 3, 2, 9, null, null, 10, null, null, 8, null, 4
+        LinkedList<Integer> input = new LinkedList<>(Arrays.asList(3, 2, 9, null, null, 10, null, null, 8, null, 4));
+        Node root = create(input);
+        TreeUtil.preOrder(root);
+        System.out.println();
+        TreeUtil.levelTravel(root);
     }
 }

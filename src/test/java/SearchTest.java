@@ -22,9 +22,7 @@ public class SearchTest {
     public void testBinarySearch() {
         Assert.assertTrue(SortUtil.isSorted(data));
         BinarySearch.binarySearch(data, 10000);
-
         BinarySearch.binarySearch(data, -1);
-
         BinarySearch.binarySearch(data, 500);
     }
 
@@ -32,6 +30,6 @@ public class SearchTest {
     public void testInterpolationSearch() {
         Assert.assertTrue(SortUtil.isSorted(data));
         InterpolationSearch.search(data, 999);
-
     }
+
 }
