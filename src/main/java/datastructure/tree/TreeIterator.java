@@ -6,7 +6,7 @@ import java.util.Stack;
 /**
  * 二叉树的遍历
  */
-public class TreeUtil {
+public class TreeIterator {
 
     /**
      * 递归方式
@@ -87,21 +87,7 @@ public class TreeUtil {
      *
      */
     public static void posOrder2(Node head) {
-        /*Stack<Node> stack = new Stack<>();
-        if (head != null) {
-            stack.push(head);
-            while (!stack.isEmpty()) {
-                Node cur = stack.pop();
-                // 先后压入右孩子和左孩子， 左右根，先入后出
-                if (cur.getRight() != null)
-                    stack.push(cur.getRight());
-                if (cur.getLeft() != null)
-                    stack.push(cur.getLeft());
-                // 先打印根结点
-                System.out.print(cur.getValue() + " ");
-            }
-            System.out.println();
-        }*/
+
     }
 
     /**

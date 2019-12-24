@@ -1,6 +1,6 @@
 import datastructure.tree.BinarySearchTree;
 import datastructure.tree.Node;
-import datastructure.tree.TreeUtil;
+import datastructure.tree.TreeIterator;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,28 +19,28 @@ public class TreeTest {
     @Test
     public void testPre() {
         System.out.print("前序遍历: ");
-        TreeUtil.preOrder(root);
+        TreeIterator.preOrder(root);
         System.out.println();
         System.out.print("前序遍历: ");
-        TreeUtil.preOrder2(root);
+        TreeIterator.preOrder2(root);
     }
 
     @Test
     public void testIn() {
         System.out.print("中序遍历: ");
-        TreeUtil.inOrder(root);
+        TreeIterator.inOrder(root);
         System.out.println();
         System.out.print("中序遍历: ");
-        TreeUtil.inOrder2(root);
+        TreeIterator.inOrder2(root);
     }
 
     @Test
     public void testPost() {
         System.out.print("后序遍历: ");
-        TreeUtil.posOrder(root);
+        TreeIterator.posOrder(root);
         System.out.println();
         System.out.print("后序遍历: ");
-        TreeUtil.posOrder2(root);
+        TreeIterator.posOrder2(root);
     }
 
     @Test

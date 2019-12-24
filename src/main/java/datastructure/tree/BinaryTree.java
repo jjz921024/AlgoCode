@@ -30,8 +30,8 @@ public class BinaryTree {
         // 3, 2, 9, null, null, 10, null, null, 8, null, 4
         LinkedList<Integer> input = new LinkedList<>(Arrays.asList(3, 2, 9, null, null, 10, null, null, 8, null, 4));
         Node root = create(input);
-        TreeUtil.preOrder(root);
+        TreeIterator.preOrder(root);
         System.out.println();
-        TreeUtil.levelTravel(root);
+        TreeIterator.levelTravel(root);
     }
 }
