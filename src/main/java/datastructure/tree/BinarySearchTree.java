@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * 二叉搜索树 / 二叉排序数 的相关功能
+ * todo: 删除操作，判断是否是二叉排序树
  */
 public class BinarySearchTree {
 

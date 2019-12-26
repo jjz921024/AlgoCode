@@ -84,7 +84,7 @@ public class TreeIterator {
 
     /**
      * 非递归方法， 后序遍历
-     *
+     * todo: 缺后序
      */
     public static void posOrder2(Node head) {
 

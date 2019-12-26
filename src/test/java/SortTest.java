@@ -4,6 +4,8 @@ import org.junit.Test;
 import sort.*;
 import utils.SortUtil;
 
+import java.util.Arrays;
+
 public class SortTest {
 
     private SortUtil sortUtil;
@@ -12,7 +14,7 @@ public class SortTest {
 
     @Before
     public void init() {
-        sortUtil = new SortUtil(1000);
+        sortUtil = new SortUtil(20);
     }
 
     @Test
@@ -142,5 +144,12 @@ public class SortTest {
             QuickSort.qucikSort2(data, 0, data.length - 1);
             Assert.assertTrue(SortUtil.isSorted(data));
         }
+    }
+
+    @Test
+    public void testHeap() {
+        int[] data = sortUtil.getData();
+        HeapSort.heapSort(data);
+        Assert.assertTrue(SortUtil.isSorted(data));
     }
 }

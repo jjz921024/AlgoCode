@@ -1,7 +1,6 @@
 package datastructure.tree;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * 二叉树实现
@@ -25,6 +24,33 @@ public class BinaryTree {
         return node;
     }
 
+    // 由层次遍历构建完全二叉树
+    // 完全二叉树可以一数组完全确定, int数组不存在null元素
+    public static Node create(Integer[] input) {
+        if (input == null || input.length <= 0) {
+            return null;
+        }
+
+        LinkedList<Integer> queue = new LinkedList<>(Arrays.asList(input));
+        LinkedList<Node> rootQueue = new LinkedList<>();
+
+        Node root = new Node(queue.poll());
+        rootQueue.add(root);
+
+        while (!rootQueue.isEmpty()) {
+            Node node = rootQueue.poll();
+            if (!queue.isEmpty()) {
+                node.setLeft(new Node(queue.poll()));
+                rootQueue.add(node.getLeft());
+            }
+            if (!queue.isEmpty()) {
+                node.setRight(new Node(queue.poll()));
+                rootQueue.add(node.getRight());
+            }
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
         // 1, 2, null, 3, null, null, 4, 5, null, null, null
         // 3, 2, 9, null, null, 10, null, null, 8, null, 4
@@ -33,5 +59,9 @@ public class BinaryTree {
         TreeIterator.preOrder(root);
         System.out.println();
         TreeIterator.levelTravel(root);
+
+        Integer[] array = new Integer[]{1, 3, 4, 6, 7};
+        Node node = create(array);
+        TreeIterator.levelTravel(node);
     }
 }
