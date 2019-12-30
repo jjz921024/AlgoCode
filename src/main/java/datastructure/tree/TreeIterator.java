@@ -42,21 +42,21 @@ public class TreeIterator {
      * 利用栈，先压入右孩子，再压左孩子
      */
     public static void preOrder2(Node head) {
+        if (head == null)
+            return;
         Stack<Node> stack = new Stack<>();
-        if (head != null) {
-            stack.push(head);
-            while (!stack.isEmpty()) {
-                Node cur = stack.pop();
-                // 先打印根结点
-                System.out.print(cur.getValue() + " ");
-                // 先后压入右孩子和左孩子， 根左右，先入后出
-                if (cur.getRight() != null)
-                    stack.push(cur.getRight());
-                if (cur.getLeft() != null)
-                    stack.push(cur.getLeft());
-            }
-            System.out.println();
+        stack.push(head);
+        while (!stack.isEmpty()) {
+            Node cur = stack.pop();
+            // 先打印根结点
+            System.out.print(cur.getValue() + " ");
+            // 先后压入右孩子和左孩子， 根左右，先入后出
+            if (cur.getRight() != null)
+                stack.push(cur.getRight());
+            if (cur.getLeft() != null)
+                stack.push(cur.getLeft());
         }
+        System.out.println();
     }
 
     /**
@@ -64,6 +64,8 @@ public class TreeIterator {
      * 先压入左子树，再压入右子树
      */
     public static void inOrder2(Node head) {
+        if (head == null)
+            return;
         Stack<Node> stack = new Stack<>();
         while (!stack.isEmpty() || head != null) {
             if (head != null) {
@@ -84,10 +86,26 @@ public class TreeIterator {
 
     /**
      * 非递归方法， 后序遍历
-     * todo: 缺后序
      */
     public static void posOrder2(Node head) {
+        if (head == null)
+            return;
+        Stack<Node> stack = new Stack<>();
+        stack.push(head);
 
+        LinkedList<Integer> list = new LinkedList<>();
+        while (!stack.empty()) {
+            Node cur = stack.pop();
+            list.addFirst(cur.getValue());
+
+            if (cur.getLeft() != null) {
+                stack.push(cur.getLeft());
+            }
+            if (cur.getRight() != null) {
+                stack.push(cur.getRight());
+            }
+        }
+        System.out.println(list.toString());
     }
 
     /**
@@ -113,25 +131,4 @@ public class TreeIterator {
         System.out.println();
     }
 
-    /**
-     * 深度优先遍历
-     * 优先走完一条分支左侧的节点
-     * 利用栈，先压右节点，再压左节点
-     */
-    public static void deepTravel(Node head) {
-        if (head == null)
-            return;
-        Stack<Node> stack = new Stack<>();
-        stack.push(head);
-        while (!stack.isEmpty()) {
-            head = stack.pop();
-            // 与宽度优先遍历相似
-            if (head.getRight() != null)
-                stack.push(head.getRight());
-            if (head.getLeft() != null)
-                stack.push(head.getLeft());
-            System.out.print(head.getValue() + " ");
-        }
-        System.out.println();
-    }
 }
