@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.Random;
 
 /**
+ * 环形链表， 头结点指向尾结点
  * Created by Jun on 2017/4/8.
  */
 public class CircularLinkedList{

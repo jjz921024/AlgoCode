@@ -36,7 +36,7 @@ public class JosephusKill {
         return head;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.createFromArray(new int[]{1,2,3,4,5});
         Node head = linkedList.head;
@@ -48,5 +48,5 @@ public class JosephusKill {
 
         linkedList.head = josephusKill1(linkedList.head, 3);
         linkedList.printRound();
-    }
+    }*/
 }

@@ -83,7 +83,7 @@ public class Palindrome {
         return Boolean.parseBoolean(null);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.createFromArray(new int[]{1,2,3,2,1,3});
         linkedList.print();
@@ -91,5 +91,5 @@ public class Palindrome {
         System.out.println(isPalindrome1(linkedList.head));
         System.out.println(isPalindrome2(linkedList.head));
         System.out.println(isPalindrome3(linkedList.head));
-    }
+    }*/
 }

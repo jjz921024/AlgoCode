@@ -51,8 +51,8 @@ public class AddLists {
      * 将链表倒序相加
      */
     public static Node addList2(Node head1, Node head2) {
-        Node node1 = ReverseList.reverseList(head1);
-        Node node2 = ReverseList.reverseList(head2);
+        Node node1 = ReverseList.reverse(head1);
+        Node node2 = ReverseList.reverse(head2);
 
         int ca = 0;
         Node head = null;
@@ -79,7 +79,7 @@ public class AddLists {
     }
 
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         LinkedList linkedList1 = new LinkedList();
         linkedList1.createFromArray(new int[]{1,2,3,4,5});
         LinkedList linkedList2 = new LinkedList();
@@ -91,5 +91,5 @@ public class AddLists {
         res2.head = addList2(linkedList1.head, linkedList2.head);
         res1.print();
         res2.print();
-    }
+    }*/
 }

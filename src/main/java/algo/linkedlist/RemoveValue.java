@@ -52,12 +52,12 @@ public class RemoveValue {
         return head;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.createFromArray(new int[]{5});
         linkedList.print();
 
         linkedList.head = removeValue2(linkedList.head, 5);
         linkedList.print();
-    }
+    }*/
 }

@@ -13,7 +13,7 @@ public class ArrayList {
 
     public void initList(){
         System.out.println("Please input a series int with the end of enter");
-        this.data = new int[5]; //todo
+        this.data = new int[5];
         Scanner scanner = new Scanner(System.in);
         while (!scanner.hasNext("f")){
             this.data[this.length] = scanner.nextInt();

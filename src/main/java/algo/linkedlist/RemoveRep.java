@@ -54,12 +54,12 @@ public class RemoveRep {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.createFromArray(new int[]{1,1});
         linkedList.print();
 
         removeRep1(linkedList.head);
         linkedList.print();
-    }
+    }*/
 }

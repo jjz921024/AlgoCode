@@ -93,12 +93,12 @@ public class DeleteNode {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
         linkedList.createFromArray(new int[]{1,2,3,4,5});
         linkedList.print();
 
         linkedList.head = deleteKthNodeFromTail(linkedList.head, 5);
         linkedList.print();
-    }
+    }*/
 }
