@@ -1,6 +1,6 @@
-import algo.linkedlist.ReverseList;
-import datastructure.list.LinkedList;
-import datastructure.list.Node;
+import algo.list.ReverseList;
+import structure.list.LinkedList;
+import utils.Node;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import utils.ListUtil;

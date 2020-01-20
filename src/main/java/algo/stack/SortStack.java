@@ -1,6 +1,6 @@
 package algo.stack;
 
-import datastructure.stack.StackExtend;
+import structure.stack.StackExtend;
 
 import java.util.Stack;
 

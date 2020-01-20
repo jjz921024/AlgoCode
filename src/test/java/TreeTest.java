@@ -1,14 +1,14 @@
-import datastructure.tree.BinarySearchTree;
-import datastructure.tree.Node;
-import datastructure.tree.TreeIterator;
+import structure.tree.BinarySearchTree;
+import utils.TreeNode;
+import structure.tree.TreeIterator;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TreeTest {
 
-    private static Node root;
-    private static Node bigTree;
+    private static TreeNode root;
+    private static TreeNode bigTree;
 
     @BeforeClass
     public static void init() {

@@ -1,12 +1,12 @@
-import datastructure.BinaryHeap;
+import structure.BinaryHeap;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import utils.SortUtil;
 
-import static datastructure.BinaryHeap.HeapType.MaxHeap;
-import static datastructure.BinaryHeap.HeapType.MinHeap;
+import static structure.BinaryHeap.HeapType.MaxHeap;
+import static structure.BinaryHeap.HeapType.MinHeap;
 import static org.junit.runners.MethodSorters.NAME_ASCENDING;
 
 @FixMethodOrder(NAME_ASCENDING)

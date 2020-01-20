@@ -1,7 +1,5 @@
 package utils;
 
-import datastructure.list.Node;
-
 public class ListUtil {
 
     public static void print(Node head) {
