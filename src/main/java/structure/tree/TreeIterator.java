@@ -2,7 +2,9 @@ package structure.tree;
 
 import utils.TreeNode;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -131,6 +133,35 @@ public class TreeIterator {
             System.out.print(head.getValue() + " ");
         }
         System.out.println();
+    }
+
+
+
+    List<List<Integer>> levels = new ArrayList<>();
+
+    // 层次遍历，逐层返回二维数组
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        if (root == null) return levels;
+        helper(root, 0);
+        return levels;
+    }
+
+    private void helper(TreeNode node, int level) {
+        // 多加一层
+        if (levels.size() == level) {
+            levels.add(new ArrayList<>());
+        }
+
+        // 获取当层的数组，添加数据
+        levels.get(level).add(node.val);
+
+        // 左右节点是下一层
+        if (node.left != null) {
+            helper(node.left, level + 1);
+        }
+        if (node.right != null) {
+            helper(node.right, level + 1);
+        }
     }
 
 }

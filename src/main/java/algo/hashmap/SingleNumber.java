@@ -1,9 +1,10 @@
-package algo.leetcode;
+package algo.hashmap;
 
 /**
  * Created by Jun on 2018/7/8.
+ * leetcode 136
  */
-public class L136_SingleNumber {
+public class SingleNumber {
     public int singleNumber(int[] nums) {
         int res = 0;
         for (int i : nums) {

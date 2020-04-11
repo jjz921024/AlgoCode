@@ -2,6 +2,8 @@ package structure.tree;
 
 import utils.TreeNode;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -76,21 +78,24 @@ public class BinarySearchTree {
         }
     }
 
-    /*private static boolean flag = true;
-    //中序遍历时记录前驱结点(前一个)last
-    private static int last = Integer.MIN_VALUE;
+    // 判断一个树是否是二叉排序树, 中序遍历
+    // [10, 5, 15, null, null, 6, 20]这个用例，一个节点的右子树上的节点都要大于它
+    public boolean isValidBST(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        midIter(root, list);
 
-    // 判断一个树/子树是否是二叉排序树
-    public static boolean isBSTree(TreeNode node) {
-        if (node.getLeft() != null && flag)
-            isBSTree(node.getLeft());   //递归到叶子结点
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i-1) >= list.get(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-        if (node.getValue() < last)      //左孩子小于双亲  或  双亲小于右孩子
-            flag = false;
-
-        last = node.getValue();  //记录前驱
-        if (node.getRight() != null && flag)
-            isBSTree(node.getRight());
-        return flag;
-    }*/
+    private void midIter(TreeNode node, List<Integer> list) {
+        if (node == null) return;
+        midIter(node.left, list);
+        list.add(node.val);
+        midIter(node.right, list);
+    }
 }

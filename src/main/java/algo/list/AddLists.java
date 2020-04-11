@@ -50,7 +50,7 @@ public class AddLists {
      * 将链表倒序相加
      */
     public static Node addList2(Node head1, Node head2) {
-        Node node1 = ReverseList.reverse(head1);
+        /*Node node1 = ReverseList.reverse(head1);
         Node node2 = ReverseList.reverse(head2);
 
         int ca = 0;
@@ -66,7 +66,7 @@ public class AddLists {
             head = new Node(n % 10);
             head.next = pre;
 
-            node1 = node1==null ? null : node1.next;  // TODO: 2017/8/28
+            node1 = node1==null ? null : node1.next;
             node2 = node2==null ? null : node2.next;
         }
         if (ca == 1) {
@@ -74,21 +74,9 @@ public class AddLists {
             head = new Node(1);
             head.next = pre;
         }
-        return head;
+        return head;*/
+        return null;
     }
 
 
-    /*public static void main(String[] args) {
-        LinkedList linkedList1 = new LinkedList();
-        linkedList1.createFromArray(new int[]{1,2,3,4,5});
-        LinkedList linkedList2 = new LinkedList();
-        linkedList2.createFromArray(new int[]{1,2,3,4,5});
-
-        LinkedList res1 = new LinkedList();
-        LinkedList res2 = new LinkedList();
-        res1.head = addList1(linkedList1.head, linkedList2.head);
-        res2.head = addList2(linkedList1.head, linkedList2.head);
-        res1.print();
-        res2.print();
-    }*/
 }

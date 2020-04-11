@@ -1,4 +1,5 @@
 package algo.list;
+
 import utils.Node;
 
 import java.util.ArrayList;
@@ -51,11 +52,4 @@ public class PrintListFromTail {
         }
     }
 
-    /*public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
-        linkedList.createFromArray(new int[]{1,2,3,4,5});
-        linkedList.print();
-
-        printListFromTailToHead3(linkedList.head);
-    }*/
 }

@@ -1,62 +1,73 @@
 package algo.list;
 
-import utils.Node;
+import utils.ListNode;
 
 import java.util.Stack;
 
 /**
  * Created by Jun on 2017/8/28.
- * 删除单链表中指定值的节点
+ * 删除单链表中指定值的所有节点
+ * leetcode 203
  */
 public class RemoveValue {
-    /**
-     * 利用栈
-     * 注意：从栈连接成链表时是 头插
-     */
-    public static Node removeValue1(Node head, int a) {
-        Stack<Node> stack = new Stack<>();
-        while (head != null) {
-            if (head.val != a)
-                stack.push(head);
-            head = head.next;
-        }
-        while (!stack.isEmpty()) {
-            stack.peek().next = head;
-            head = stack.pop();
-        }
-        return head;
+
+  /**
+   * 方法1：利用栈
+   * 从栈连接成链表时是头插
+   */
+  public ListNode removeElements(ListNode head, int val) {
+    Stack<ListNode> stack = new Stack<>();
+    // 将不等于val的节点用栈保留下来
+    while (head != null) {
+      if (head.val != val) {
+        stack.push(head);
+      }
+      head = head.next;
     }
-
-
-    /**
-     * 遍历直接判断
-     * 空间复杂度0(1)
-     */
-    public static Node removeValue2(Node head, int a) {
-        //注意：先找第一个不等于a的节点作为头节点
-        while (head != null) {
-            if (head.val != a)
-                break;
-            head = head.next;
-        }
-        Node pre = head;
-        Node cur = head;  // 最好不要Node cur = head.next; 1个节点时会有空指针
-        while (cur != null) {
-            if (cur.val == a)
-                pre.next = cur.next;
-            else
-                pre = cur;   // 不要pre=pre.next
-            cur = cur.next;
-        }
-        return head;
+    // 从栈中恢复
+    while (!stack.isEmpty()) {
+      // 类似于头插
+      stack.peek().next = head;
+      head = stack.pop();
     }
+    return head;
+  }
 
-    /*public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
-        linkedList.createFromArray(new int[]{5});
-        linkedList.print();
 
-        linkedList.head = removeValue2(linkedList.head, 5);
-        linkedList.print();
-    }*/
+  /**
+   * 方法2：遍历直接判断
+   * 空间复杂度0(1)
+   */
+  public ListNode removeElements2(ListNode head, int val) {
+    //注意：先找第一个不等于a的节点作为头节点
+    while (head != null) {
+      if (head.val != val)
+        break;
+      head = head.next;
+    }
+    ListNode pre = head;
+    ListNode cur = head;  // 最好不要Node cur = head.next; 1个节点时会有空指针
+    while (cur != null) {
+      if (cur.val == val)
+        pre.next = cur.next;
+      else
+        pre = cur;   // 不要pre=pre.next
+      cur = cur.next;
+    }
+    return head;
+  }
+
+
+  /**
+   * 删除链表中的节点，非末尾节点
+   * leetcode 237
+   *
+   * @param node 表示的是要删除的结点，保证不是末尾节点
+   */
+  public void deleteNode(ListNode node) {
+    // 因为无法访问前一个结点，所以把要删除的结点的后一个结点的值前移
+    node.val = node.next.val;
+    // 然后删除掉后一个结点
+    node.next = node.next.next;
+  }
 }

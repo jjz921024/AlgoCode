@@ -2,6 +2,10 @@ package algo.tree;
 
 import utils.TreeNode;
 
+/**
+ * 求二叉树的深度
+ * leetcode 104
+ */
 public class MaxDepth {
 
     public int maxDepth(TreeNode root) {

@@ -1,11 +1,12 @@
-package algo.leetcode;
+package algo.hashmap;
 
 import java.util.HashMap;
 
 /**
  * Created by Jun on 2018/7/23.
+ * leetcode 1
  */
-public class L1_TwoSum {
+public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
         for (int i=0; i<nums.length; i++) {
