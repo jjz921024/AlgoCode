@@ -5,6 +5,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import utils.ListUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListTest {
 
     private static LinkedList linkedList;
@@ -52,10 +55,10 @@ public class ListTest {
         Node head = linkedList.getHead();
         Node node = head.next;
 
-        Node reverseNode = ReverseList.reverse2(node);
+        //Node reverseNode = ReverseList.reverse2(node);
 
         // 哨兵结点重新指向反转的结点
-        head.next = reverseNode;
+        //head.next = reverseNode;
         ListUtil.print(head);
     }
 

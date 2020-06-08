@@ -28,7 +28,6 @@ public class TreeTilt {
       // 累加得到二叉树的坡度
       sum += calTiltByNode(node);
     }
-
     return sum;
   }
 
@@ -40,7 +39,6 @@ public class TreeTilt {
   // 前序遍历，算一个节点的和
   private int preOrder(TreeNode node) {
     if (node == null) return 0;
-
     return node.val + preOrder(node.left) + preOrder(node.right);
   }
 

@@ -38,7 +38,7 @@ public class QuickSort {
      * 非递归实现
      * 维护一个栈，栈中保存每一次方法调用的参数
      */
-    public static void qucikSort2(int[] array, int low, int high) {
+    public static void quickSort2(int[] array, int low, int high) {
         Stack<Map<String, Integer>> stack = new Stack<>();
         // 第一次调用的参数入栈
         HashMap<String, Integer> paramMap = new HashMap<>();

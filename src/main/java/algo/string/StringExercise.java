@@ -1,5 +1,7 @@
 package algo.string;
 
+import java.util.HashSet;
+
 /**
  * Created by Jun on 2017/8/29.
  *
@@ -88,5 +90,7 @@ public class StringExercise {
         //System.out.println(isDeformation("abc", "abc"));
         //System.out.println(removeKZeros("200020000d00fe000", 3));
         System.out.println(isRotation("abcd", "bdca"));
+
     }
+
 }

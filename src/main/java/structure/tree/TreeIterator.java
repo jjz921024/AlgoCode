@@ -2,6 +2,8 @@ package structure.tree;
 
 import utils.TreeNode;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -96,11 +98,12 @@ public class TreeIterator {
             return;
         Stack<TreeNode> stack = new Stack<>();
         stack.push(head);
-
-        LinkedList<Integer> list = new LinkedList<>();
+        // 再利用一个栈保存遍历结果
+        Stack<Integer> result = new Stack<>();
         while (!stack.empty()) {
             TreeNode cur = stack.pop();
-            list.addFirst(cur.getValue());
+            // 根节点最后输出
+            result.push(cur.getValue());
 
             if (cur.getLeft() != null) {
                 stack.push(cur.getLeft());
@@ -109,7 +112,11 @@ public class TreeIterator {
                 stack.push(cur.getRight());
             }
         }
-        System.out.println(list.toString());
+        // 输出结果
+        while (!result.empty()) {
+            System.out.println(result.pop());
+        }
+        System.out.println();
     }
 
     /**

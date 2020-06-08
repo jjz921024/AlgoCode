@@ -54,6 +54,9 @@ public class RemoveDuplicates {
     }
   }
 
+
+
+
   /**
    * 删除 升序链表 中重复的元素
    * leetcode 83
@@ -68,6 +71,26 @@ public class RemoveDuplicates {
         current = current.next;
       }
     }
+    return head;
+  }
+
+  /**
+   * 删除 升序链表 中重复的元素，只要是重复的元素，把该元素都删除
+   * leetcode 82
+   * todo
+   */
+  public ListNode deleteDuplicates2(ListNode head) {
+    if (head == null) return null;
+
+    ListNode current = head.next;
+    ListNode prev = head;
+
+    while (current != null && current.next != null) {
+
+    }
+
+
+
     return head;
   }
 

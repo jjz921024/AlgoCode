@@ -141,7 +141,7 @@ public class SortTest {
 
             sortUtil.shuffle();
             Assert.assertFalse(SortUtil.isSorted(data));
-            QuickSort.qucikSort2(data, 0, data.length - 1);
+            //QuickSort.qucikSort2(data, 0, data.length - 1);
             Assert.assertTrue(SortUtil.isSorted(data));
         }
     }

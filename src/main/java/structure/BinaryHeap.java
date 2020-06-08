@@ -11,6 +11,7 @@ public class BinaryHeap {
     private int[] heap;
     private HeapType type;
 
+
     private BinaryHeap(int[] heap) {
         this.heap = heap;
         type = getHeapType(heap);

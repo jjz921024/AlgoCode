@@ -17,10 +17,10 @@ public class InsertSort {
         for (int i = 1; i < array.length; i++) {
             // 记录待插入的值
             int temp = array[i];
+            // 有序区 从右向左比较，同时复制元素
             int j = i - 1;
-            // 从右向左比较，同时复制元素
             for (; j >= 0 && temp < array[j]; j--) {
-                array[j + 1] = array[j];
+                array[j + 1] = array[j];  // 挪位
             }
             // 插入适当的位置
             array[j + 1] = temp;
