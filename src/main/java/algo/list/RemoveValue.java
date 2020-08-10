@@ -4,14 +4,10 @@ import utils.ListNode;
 
 import java.util.Stack;
 
-/**
- * Created by Jun on 2017/8/28.
- * 删除单链表中指定值的所有节点
- * leetcode 203
- */
 public class RemoveValue {
 
   /**
+   * leetcode 203 删除单链表中指定值的所有节点
    * 方法1：利用栈
    * 从栈连接成链表时是头插
    */

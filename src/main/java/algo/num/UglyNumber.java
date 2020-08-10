@@ -1,9 +1,9 @@
-package algo.leetcode;
+package algo.num;
 
 /**
  * Created by Jun on 2018/7/9.
  */
-public class L263_UglyNumber {
+public class UglyNumber {
     public boolean isUgly(int num) {
         if (num <= 0)
             return false;

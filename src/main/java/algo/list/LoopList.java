@@ -1,6 +1,5 @@
 package algo.list;
 
-import utils.ListNode;
 import utils.Node;
 
 
@@ -29,8 +28,8 @@ public class LoopList {
 
     /**
      * 链表有环时，求环长
-     * 当两指针第一次相遇时，继续循环前进
-     * 当第二次相遇，统计循环次数，两指针速度差为1，再次相遇时，p2比p1多走1圈
+     * 当两指针第一次相遇时，继续循环前进，当第二次相遇，统计环长
+     * 两指针速度差为1，再次相遇时，p2比p1多走1圈
      */
     public int loopLength(Node head) {
         Node p1 = head;
@@ -57,17 +56,30 @@ public class LoopList {
     }
 
     /**
-     * 返回入环结点
-     * 设链表头结点到入环结点的距离为 D
-     * 入环结点到首次相遇结点距离为 S1
-     * 首次相遇结点回到入环结点距离为 S2
-     * 首次相遇时，指针p2比p1多走一倍距离
-     * leetcode 142
+     * leetcode 142  若有环返回入环结点，无环返回null
+     * 相遇时，将一个指针设为head，同速前进，再次相遇即为入环节点
      */
-    public ListNode detectCycle(ListNode head) {
+    public Node detectCycle(Node head) {
+        Node p1 = head;
+        Node p2 = head;
+        boolean isMeet = false;
+        while (p2 != null && p2.next != null) {
+            p1 = p1.next;
+            p2 = p2.next.next;
+            if (p1 == p2) {
+                p1 = head;
+                isMeet = true;
+                break;
+            }
+        }
 
-        return null;
+        if (!isMeet) return null;
+
+        while (p1 != p2) {
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        return p1;
     }
-
 
 }

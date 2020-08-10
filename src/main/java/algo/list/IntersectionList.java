@@ -9,6 +9,7 @@ import utils.ListNode;
 public class IntersectionList {
 
   public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    // 先计算两个链表的长度
     ListNode temp = headA;
     int lenA = 0;
     while (headA != null) {
@@ -36,8 +37,9 @@ public class IntersectionList {
       shortNode = headA;
     }
 
+    // 长度差，较长的链表先走
     int minus = Math.abs(lenA - lenB);
-    while ((minus -= 1) >= 0) { // 注意等号，想相差1个节点时的情况来判断是否加等号
+    while ((minus -= 1) >= 0) { // 注意等号，特例：用相差1个节点时的情况来判断是否加等号
       lengthNode = lengthNode.next;
     }
 

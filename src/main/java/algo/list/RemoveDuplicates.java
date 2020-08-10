@@ -5,14 +5,11 @@ import utils.Node;
 
 import java.util.HashSet;
 
-/**
- * Created by Jun on 2017/8/28.
- * 删除链表中值重复出现的节点  （链表不一定升序）
- */
 public class RemoveDuplicates {
 
   /**
-   * 利用哈希表
+   * 删除链表中值重复出现的节点  （链表不一定升序）
+   * 方法一：利用哈希表
    * 时间复杂度为0(n),空间复杂度为0(n)
    */
   public void deleteDuplicates(Node head) {
@@ -33,7 +30,7 @@ public class RemoveDuplicates {
   }
 
   /**
-   * 类似选择排序
+   * 方法二：类似选择排序，嵌套两层循环来判断元素是否重复
    * 空间复杂度0(1)，时间复杂度0(n*n)
    */
   public void deleteDuplicates2(Node head) {
@@ -55,10 +52,8 @@ public class RemoveDuplicates {
   }
 
 
-
-
   /**
-   * 删除 升序链表 中重复的元素
+   * 删除升序链表中重复的元素
    * leetcode 83
    */
   public ListNode deleteDuplicates(ListNode head) {
@@ -75,21 +70,20 @@ public class RemoveDuplicates {
   }
 
   /**
-   * 删除 升序链表 中重复的元素，只要是重复的元素，把该元素都删除
+   * 删除升序链表中重复的元素 （只保留原链表中没有重复出现的元素）
    * leetcode 82
    * todo
    */
   public ListNode deleteDuplicates2(ListNode head) {
     if (head == null) return null;
 
-    ListNode current = head.next;
-    ListNode prev = head;
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
 
-    while (current != null && current.next != null) {
+    ListNode next;
+    while (dummy != null) {
 
     }
-
-
 
     return head;
   }

@@ -2,37 +2,32 @@ package algo.list;
 
 import utils.ListNode;
 
-// todo leetcode 328
+/**
+ * leetcode 328
+ * 将奇偶链表分别排在一起
+ */
 public class OddEvenList {
 
   public ListNode oddEvenList(ListNode head) {
     if (head == null) return null;
     else if (head.next == null) return head;
 
-    ListNode oddHead = head;
-    ListNode oddTail = head;
-    ListNode evenHead = head.next;
+    // 第一个节点视为奇数节点
+    ListNode odd = head;           // 奇链表的头指针head，尾指针odd
+    ListNode evenHead = head.next; // 偶链表的头指针
+    ListNode even = evenHead;      // 偶链表的尾指针
 
-    // 从第三个节点开始遍历
-    ListNode cur = evenHead.next;
+    while (even != null && even.next != null) {  // 注意终止条件
+      odd.next = even.next;
+      odd = odd.next;
 
-    int count = 1;
-    while (cur != null) {
-      if (count % 2 == 0) {
-        evenHead.next = cur;
-        evenHead = evenHead.next;
-      } else {
-        oddHead.next = cur;
-        oddHead = oddHead.next;
-        oddTail = cur;
-      }
-      count += 1;
-      cur = cur.next;
+      even.next = odd.next;
+      even = even.next;
     }
 
-    oddTail.next = head.next;
+    // 奇节点末尾拼接偶节点头
+    odd.next = evenHead;
     return head;
   }
-
 
 }

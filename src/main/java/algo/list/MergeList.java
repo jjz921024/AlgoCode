@@ -5,7 +5,6 @@ import utils.ListNode;
 /**
  * 升序链表合并为一个新的升序链表
  * leetcode 21
- * todo review
  */
 public class MergeList {
 

@@ -5,14 +5,10 @@ import utils.Node;
 import java.util.ArrayList;
 import java.util.Stack;
 
-
-/**
- * Created by Jun on 2017/8/2.
- * 从尾到头打印链表
- */
-public class PrintListFromTail {
+public class PrintList {
 
     /**
+     * 从尾到头打印链表
      * 递归方法，把链表从尾到头依次添加进数组
      * 打印数组
      */
@@ -49,6 +45,24 @@ public class PrintListFromTail {
         if (listNode != null) {
             printListFromTailToHead3(listNode.next);
             System.out.print(listNode.val + " ");
+        }
+    }
+
+
+    /**
+     * 打印两个有序链表的公共部分， 值相同的部分
+     */
+    public void printCommonPart(Node head1, Node head2) {
+        while (head1.next != null && head2.next != null) {
+            if (head1.val < head2.val) {
+                head1 = head1.next;
+            } else if (head1.val > head2.val) {
+                head2 = head2.next;
+            } else {
+                System.out.println(head1.val);
+                head1 = head1.next;
+                head2 = head2.next;
+            }
         }
     }
 

@@ -1,6 +1,5 @@
 package algo.tree;
 
-
 import utils.TreeNode;
 
 import java.util.ArrayList;
@@ -18,8 +17,8 @@ public class PathSum {
       return false;
     }
 
-    // 根节点为0且sum为0的情况
     if (root.left == null && root.right == null && root.val == sum) return true;
+
     return hasPathSum(root.right, sum - root.val) || hasPathSum(root.left, sum - root.val);
   }
 
@@ -27,52 +26,59 @@ public class PathSum {
   /**
    * leetcode 113
    * 找到所有从根节点到叶子节点路径总和等于给定目标和的 路径
-   * todo
    */
   List<List<Integer>> result = new ArrayList<>();
 
   public List<List<Integer>> pathSum(TreeNode root, int sum) {
     if (root == null) return result;
-
-    helper(root, sum, new LinkedList<>());
-
+    helper(root, sum, new ArrayList<>());
     return result;
   }
 
-  private void helper(TreeNode node, int sum, LinkedList<Integer> list) {
+  private void helper(TreeNode node, int sum, List<Integer> list) {
     if (node == null) return;
+
+    // 先减再判断
+    sum -= node.val;
+    list.add(node.val);
 
     if (node.left == null && node.right == null && sum == 0) {
       result.add(list);
     }
 
-    sum -= node.val;
-    list.add(node.val);
-
-    helper(node.left, sum, list);
-    helper(node.right, sum, list);
-
-
-    list.removeLast();
+    helper(node.left, sum, new ArrayList<>(list));
+    helper(node.right, sum, new ArrayList<>(list));
   }
-
-
 
 
   /**
    * leetcode 437
    * 找出路径和等于给定值的路径的总数，路径不需要从根节点开始，也不需要在叶子节点结束
-   * todo
+   *
+   * 1. 以当前节点作为头结点的路径数量
+   * 2. 以当前节点的左孩子作为头结点的路径数量
+   * 3. 以当前节点的右孩子作为头结点啊路径数量
+   *
+   * todo 重要
    */
-  /*private int result = 0;
-
   public int pathSum3(TreeNode root, int sum) {
-    if (root == null) {
-      return 0;
-    }
+    if (root == null) return 0;
 
-    return result;
-  }*/
+    int result = countPath(root, sum);
+    int a = pathSum3(root.left, sum);
+    int b = pathSum3(root.right, sum);
+
+    return result + a + b;
+  }
+
+  private int countPath(TreeNode node, int sum) {
+    if (node == null) return 0;
+
+    sum -= node.val;
+    int result = sum == 0 ? 1 : 0;
+    return result + countPath(node.left, sum) + countPath(node.right, sum);
+  }
+
 
   /**
    * 求根到叶子节点数字之和
@@ -80,7 +86,6 @@ public class PathSum {
    */
   public int sumNumbers(TreeNode root) {
     if (root == null) return 0;
-
     ArrayList<Integer> pathNum = new ArrayList<>();
 
     calPathSum(root, 0, pathNum);
@@ -112,11 +117,10 @@ public class PathSum {
    */
   ArrayList<Integer> bitPath = new ArrayList<>();
 
-
   public int sumRootToLeaf(TreeNode root) {
     if (root == null) return 0;
 
-    helper(root, 0);
+    helperBit(root, 0);
 
     int sum = 0;
     for (Integer i : bitPath) {
@@ -125,7 +129,7 @@ public class PathSum {
     return sum;
   }
 
-  private void helper(TreeNode node, int acc) {
+  private void helperBit(TreeNode node, int acc) {
     if (node == null) return;
 
     if (node.left == null && node.right == null) {
@@ -133,9 +137,9 @@ public class PathSum {
     }
 
     int cur = (acc + node.val) << 1;
-    helper(node.left, cur);
-    helper(node.right, cur);
 
+    helperBit(node.left, cur);
+    helperBit(node.right, cur);
   }
 
 }

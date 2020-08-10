@@ -67,7 +67,7 @@ public class ListTest {
     public void reverseTest2() {
         Node head = linkedList.getHead();
         ListUtil.print(head);
-        ReverseList.reversePartList(head, 2, 5);
+        //ReverseList.reversePartList(head, 2, 5);
         ListUtil.print(head);
     }
 }

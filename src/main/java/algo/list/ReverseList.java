@@ -3,22 +3,18 @@ package algo.list;
 import utils.ListNode;
 import utils.Node;
 
-/**
- * Created by Jun on 2017/8/2.
- * 反转链表
- * leetcode 206
- */
 public class ReverseList {
 
-  // 迭代方式
-  public ListNode reverseList(ListNode head) {
+  /**
+   * leetcode 206 反转链表
+   * 迭代方式
+   */
+  public ListNode reverse(ListNode head) {
     ListNode prev = null;
     while (head != null) {
       ListNode next = head.next;
-      // 当前头节点的next 改成指向 前一个节点prev
-      head.next = prev;
-      // 往下走
-      prev = head;
+      head.next = prev;  // 翻转，当前头节点的next改成指向前一个节点prev
+      prev = head;  // 往下走
       head = next;
     }
     return prev;
@@ -42,55 +38,51 @@ public class ReverseList {
   }
 
 
-  // 翻转从from到to的结点
-  public static void reversePartList(Node node, int fromIndex, int toIndex) {
-    Node fromPre = null;
-    Node from = null;
-    Node to = null;
-    Node toNext = null;
+  /**
+   * 翻转位置从from到to的结点（从1开始计）
+   * todo
+   */
+  public static ListNode reversePartList(ListNode head, int from, int to) {
+    if (head == null || head.next == null) return head;
+    if (from >= to) return head;
 
-    // 确认fromPre，from，to，toNext四个结点
-    // 哨兵结点的index为0，index从1开始
-    int curIndex = 1;
-    Node tmp = node.next;
-    while (tmp != null) {
-      if (curIndex == fromIndex - 1) {
-        fromPre = tmp;
-      } else if (curIndex == fromIndex) {
-        from = tmp;
-      } else if (curIndex == toIndex) {
-        to = tmp;
-      } else if (curIndex == toIndex + 1) {
-        toNext = tmp;
-      }
-      tmp = tmp.next;
-      curIndex++;
+    ListNode cur = head;
+    ListNode prev = null;
+
+    ListNode start = head;
+    ListNode end = null;
+
+    for (int i = 1; i < from; i++) {
+      cur = cur.next;
     }
 
-    // from 或 to 都超过尾结点不翻转
-    if (from == null || to == null) {
-      throw new RuntimeException("不符合条件");
+    // 翻转链表
+    for (int i = from; i <= to; i++) {
+
     }
 
-    // 翻转from到to区间的结点
-    Node pre = from;
-    Node cur = pre.next;
-    while (cur != toNext) {
-      Node next = cur.next;
-      cur.next = pre;
-      pre = cur;
-      cur = next;
-    }
+    // 从头节点开始翻转的情况
+    if (from == 1) {
 
-    // 将 from-1 节点指向 to 结点
-    // 如果from-1结点为空，哨兵结点指向to
-    if (fromPre != null) {
-      fromPre.next = to;
-    } else {
-      node.next = to;
     }
-    // 将 from 结点指向 to + 1 结点
-    from.next = toNext;
+    return head;
   }
 
+
+  /**
+   * leetcode 24 两两交换链表中相邻节点  (2个一组反转链表)
+   *
+   */
+  public ListNode swapPairs(ListNode head) {
+    if (head == null || head.next == null) return head;
+
+    ListNode n1 = head;
+    ListNode n2 = head.next;
+
+    // 翻转剩余部分，返回的节点拼接在n1后
+    n1.next = swapPairs(n2.next);  // !!!
+
+    n2.next = n1;
+    return n2;
+  }
 }
