@@ -45,14 +45,60 @@ public class DoublePointerSolution {
     return head;
   }
 
-
   /**
    * leetcode 19 删除倒数第K个节点
-   * 方法一：分两次遍历
+   * 快慢指针，一次遍历
+   */
+  public ListNode removeNthFromEnd(ListNode head, int n) {
+    if (head == null || n <= 0) return head;
+
+    ListNode fast = head, slow = head;
+    // 快指针先走n步
+    while (n-- > 0) {
+      fast = fast.next;
+    }
+
+    // 先判断是否要删除头结点
+    if (fast == null) return head.next;
+
+    // 注意循环退出条件
+    while (fast.next != null) {
+      fast = fast.next;
+      slow = slow.next;
+    }
+
+    slow.next = slow.next.next;
+    return head;
+  }
+
+  // 方法二：快慢指针 + 虚拟头节点
+  public ListNode removeNthFromEnd2(ListNode head, int n) {
+    if (head == null || n <= 0) return head;
+
+    // 虚拟头节点，多走n+1步
+    ListNode dummy = new ListNode(0);
+    ListNode fast = dummy, slow = dummy;
+    dummy.next = head;
+    while (n-- >= 0) {
+      fast = fast.next;
+    }
+
+    // 循环结束时，slow指向的下一个节点为要删除的节点
+    while (fast != null) {
+      fast = fast.next;
+      slow = slow.next;
+    }
+
+    slow.next = slow.next.next;
+    return dummy.next;
+  }
+
+  /**
+   * 方法三：分两次遍历
    * 倒数第k个节点即使正数第 N-K+1 个节点
    * 关键是找到要删除节点的前一个节点，即第 N-K个节点
    */
-  public ListNode removeNthFromEnd(ListNode head, int k) {
+  public ListNode removeNthFromEnd3(ListNode head, int k) {
     if (head == null || k <= 0) return head;
 
     // 保留头节点留作返回
@@ -79,28 +125,6 @@ public class DoublePointerSolution {
     }
 
     return result;
-  }
-
-  // 方法二：快慢指针，一次遍历
-  public ListNode removeNthFromEnd2(ListNode head, int n) {
-    if (head == null || n <= 0) return head;
-
-    // 虚拟头节点，多走n+1步
-    ListNode dummy = new ListNode(0);
-    ListNode fast = dummy, slow = dummy;
-    dummy.next = head;
-    while (n-- >= 0) {
-      fast = fast.next;
-    }
-
-    // 循环结束时，slow指向的下一个节点为要删除的节点
-    while (fast != null) {
-      fast = fast.next;
-      slow = slow.next;
-    }
-
-    slow.next = slow.next.next;
-    return dummy.next;
   }
 
 

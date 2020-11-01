@@ -1,5 +1,7 @@
 package algo.array;
 
+import java.util.Arrays;
+
 public class SearchSolution {
 
   /**
@@ -49,5 +51,32 @@ public class SearchSolution {
     }
     return nums[left];
   }
+
+
+  /**
+   * leetcode 287 找数组中唯一的重复元素
+   * 数组长度n+1，元素范围 1~n
+   * 要求：不能更改数组，时间复杂度小于O(n^2),空间复杂度O(1)
+   */
+  public int findDuplicate(int[] nums) {
+    int left = 0, right = nums.length - 1;
+    while (left < right) {
+      int mid = left + (right - left) / 2;
+
+      int count = 0;
+      for (int num : nums) {
+        if (num <= mid) count++;
+      }
+
+      // 抽屉原理：若小于等于n的个数 大于 n，那么1~n内存在重复元素
+      if (count > mid) {
+        right = mid;
+      } else {
+        left = mid + 1;
+      }
+    }
+    return left;
+  }
+
 
 }

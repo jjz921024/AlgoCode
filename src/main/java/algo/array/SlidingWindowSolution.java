@@ -22,4 +22,33 @@ public class SlidingWindowSolution {
     return max;
   }
 
+  /**
+   * leetcode 53 最大子序和
+   * todo
+   */
+  public int maxSubArray(int[] nums) {
+    int left = 0, right = 0;
+    int maxSum = Integer.MIN_VALUE;
+    int sum = 0;
+
+    while (right < nums.length) {
+      sum += nums[right];
+      right++;
+
+      if (sum > maxSum) {
+        maxSum = sum;
+      } else {
+        while (left < right) {
+          sum -= nums[left];
+          left++;
+          maxSum = Math.max(maxSum, sum);
+        }
+        sum = 0;
+      }
+    }
+
+    return maxSum;
+  }
+
+
 }

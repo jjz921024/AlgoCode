@@ -80,4 +80,65 @@ public class DoublePointSolution {
     || (c >= 48 && c <= 57)); // 数字
   }
 
+
+  /**
+   * leetcode 283 移动零到末尾
+   */
+  public void moveZeroes(int[] nums) {
+    // bound指针之前的都是非0元素
+    int cur = 0, bound = 0;
+
+    while (cur < nums.length) {
+      // 遇到非0元素，将它放到bound位置，然后两指针往前走
+      // 遇到0元素，当前指针往前走
+      if (nums[cur] != 0) {
+        int tmp = nums[cur];
+        nums[cur++] = nums[bound];
+        nums[bound++] = tmp;
+      } else {
+        cur++;
+      }
+    }
+  }
+
+  /**
+   * leetcod 581 找出最短无序子数组，使整个数组能升序
+   * todo
+   */
+  public int findUnsortedSubarray(int[] nums) {
+    if (nums.length <= 1) return 0;
+
+    int left = 0, right = nums.length - 1;
+
+    while (left < nums.length - 1 && nums[left] <= nums[left + 1]) left++;
+    while (right > 0 && nums[right] >= nums[right - 1]) right--;
+
+    return right - left < 0 ? 0 : right - left + 1;
+  }
+
+  /**
+   * leetcode 11 盛水容器
+   */
+  public int maxArea(int[] height) {
+    int left = 0, right = height.length - 1;
+    int max = Integer.MIN_VALUE;
+
+    while (left < right) {
+      int width = right - left;
+      max = Math.max(max, width * Math.min(height[left], height[right]));
+
+      // 移动高度低的那边
+      // 若两边高度一样，那么只移动任意一边面积都不会增大。这种情况下，更大的面积只会出现在两侧都移动后
+      if (height[left] < height[right]) {
+        left++;
+      } else {
+        right--;
+      }
+    }
+    return max;
+  }
+
+
+
+
 }

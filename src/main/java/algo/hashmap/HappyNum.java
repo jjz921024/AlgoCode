@@ -13,6 +13,7 @@ public class HappyNum {
 
     while (n != 1) {
       int r = helper(n);
+      // 判断是否会产生循环，重复出现
       if (set.contains(r)) return false;
       set.add(r);
       n = r;
@@ -30,14 +31,5 @@ public class HappyNum {
     return result;
   }
 
-  private int getNext(int n) {
-    int totalSum = 0;
-    while (n > 0) {
-      int d = n % 10;
-      n = n / 10;
-      totalSum += d * d;
-    }
-    return totalSum;
-  }
 
 }
