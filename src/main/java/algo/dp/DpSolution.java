@@ -1,37 +1,6 @@
 package algo.dp;
 
-import java.util.HashMap;
-
 public class DpSolution {
-
-  /**
-   * leetcode 322
-   * 凑硬币
-   */
-  public int coinChange(int[] coins, int amount) {
-    HashMap<Integer, Integer> dp = new HashMap<>();
-    return helper(coins, amount, dp);
-  }
-
-  private int helper(int[] coins, int amount, HashMap<Integer, Integer> dp) {
-    if (amount == 0) return 0;
-    if (amount < 0) return -1;
-
-    // 求最小值，初始化最大
-    int result = Integer.MAX_VALUE;
-    for (int coin : coins) {
-      Integer i = dp.get(amount - coin);
-      if (i == null) {
-        i = helper(coins, amount - coin, dp);
-        dp.put(amount - coin, i);
-      }
-
-      // 金额超限的情况
-      if (i == -1) continue;
-      result = Math.min(result, 1 + i);
-    }
-    return result == Integer.MAX_VALUE ? -1 : result;
-  }
 
   /**
    * 高楼抛鸡蛋 leetcode 887

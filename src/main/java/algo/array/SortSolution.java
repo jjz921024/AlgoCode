@@ -1,8 +1,6 @@
 package algo.array;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class SortSolution {
 
@@ -42,5 +40,32 @@ public class SortSolution {
     }
     return result;
   }
+
+
+  /**
+   * leetcode 532 diff对
+   */
+  public int findPairs(int[] nums, int k) {
+    if(nums.length < 2) return 0;
+    Arrays.sort(nums);
+
+    int count = 0;
+    for(int i = 0; i < nums.length; i++) {
+      // 跳过重复数 (1, 1, 3) -> (1, 3), (1, 3)
+      if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+      for (int j = i+1; j < nums.length; j++) {
+        if(nums[j] - nums[i] == k) {
+          count++;
+          // 如果相等也跳出循环，右端点的重复树由外层判断
+          // (1, 3, 3) -> (1, 3), (1, 3)
+          break;
+        } else if(nums[j] - nums[i] > k)
+          break;
+      }
+    }
+    return count;
+  }
+
 
 }

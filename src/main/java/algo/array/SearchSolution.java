@@ -25,10 +25,36 @@ public class SearchSolution {
     else return left + 1;  // 取nums[left] < target是，插入在left位置后
   }
 
+  /**
+   * leetcode 34
+   * 搜索左右边界
+   */
+  /*public int[] searchRange(int[] nums, int target) {
+
+  }*/
+
+  /**
+   * leetcode 33
+   * 旋转有序数组，判断是否存在指定数 todo
+   */
+  public int search(int[] nums, int target) {
+    /*int left = 0, right = nums.length - 1;
+    while(left < right) {
+      int mid = left + (right - left) / 2;
+      if (nums[mid] > nums[right]) {
+        left = mid + 1;
+      } else if (nums[mid] < nums[right]) {
+        right = mid;
+      } else {
+        return mid;
+      }
+    }*/
+    return -1;
+  }
 
   /**
    * leetcode 153 / 154
-   * 旋转有序数组，找最小值
+   * 旋转有序数组，找最小值  todo
    */
   public int findMin(int[] nums) {
     int left = 0, right = nums.length - 1;
@@ -76,6 +102,48 @@ public class SearchSolution {
       }
     }
     return left;
+  }
+
+
+  /**
+   * leetcode 69 求平方根
+   * todo review
+   * 二分查找，注意边界，int类型溢出
+   */
+  public int mySqrt(int x) {
+    int low = 0;
+    int high = x;
+    int res = -1;
+    while (high - low >= 0) {
+      int mid = low + (high - low) / 2;
+      if ((long) mid * mid <= x) {
+        res = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+    return res;
+  }
+
+  /**
+   * leetcode 367 判断一个数是否是完全平方数
+   * 逻辑同 leetcode 69
+   */
+  public boolean isPerfectSquare(int num) {
+    int low = 0, high = num;
+    while (low <= high) {
+      int mid = low + (high - low) / 2;
+      long tmp = (long) mid * mid;
+      if (tmp < num) {
+        low = mid + 1;
+      } else if (tmp > num) {
+        high = mid - 1;
+      } else {
+        return true;
+      }
+    }
+    return false;
   }
 
 

@@ -1,5 +1,10 @@
 package algo.array;
 
+import utils.TreeNode;
+
+import java.lang.reflect.Array;
+import java.util.*;
+
 /**
  * 双指针技巧 - 左右指针
  * 通常用于数组和二分查找，数组可以方便移动左右指针
@@ -138,6 +143,92 @@ public class DoublePointSolution {
     return max;
   }
 
+  /**
+   * leetcode 349 / 350
+   * 求两个数组交集 排序+双指针
+   */
+  public int[] intersection(int[] nums1, int[] nums2) {
+    Arrays.sort(nums1);
+    Arrays.sort(nums2);
+
+    int p1 = 0, p2 = 0, idx = 0;
+    int len = Math.max(nums1.length, nums2.length);
+    int[] res = new int[len];
+    while (p1 < nums1.length && p2 < nums2.length) {
+      if (nums1[p1] < nums2[p2]) {
+        p1++;
+      } else if (nums1[p1] > nums2[p2]) {
+        p2++;
+      } else {
+        if (idx == 0 || res[idx - 1] != nums1[p1]) {
+          res[idx++] = nums1[p1];  // leetcode 350 不去重
+        }
+        p1++;
+        p2++;
+      }
+    }
+    return Arrays.copyOf(res, idx);
+  }
+
+  /**
+   * leetcode 392 判断s是否是t的子序列
+   * 双指针
+   * todo 动态规划解法
+   */
+  public boolean isSubsequence(String s, String t) {
+    int p1 = 0, p2 = 0;
+    while (p1 < s.length() && p2 < t.length()) {
+      if (s.charAt(p1) == t.charAt(p2)) {
+        p1++;
+      }
+      p2++;
+    }
+    return p1 == s.length();
+  }
+
+  /**
+   * leetcode 88
+   * 合并两个有序数组
+   * num1有足够空间，m为nums1种元素个数
+   */
+  public void merge(int[] nums1, int m, int[] nums2, int n) {
+    int p1 = m - 1, p2 = n - 1, pos = m + n - 1;
+    while (p1 >= 0 && p2 >= 0) {
+      if (nums1[p1] >= nums2[p2]) {
+        nums1[pos--] = nums1[p1--];
+      } else {
+        nums1[pos--] = nums2[p2--];
+      }
+    }
+    while (p2 >= 0) {
+      nums1[pos--] = nums2[p2--];
+    }
+  }
+
+
+  /**
+   * leetcode 763 划分字母区间
+   * 每个片段尽可能短，才能划分出最多的片段
+   * 但每个字母只能出现在一个片段中，所以要找到该片段中所有字母的最远位置
+   * todo 贪心算法如何做？
+   */
+  public List<Integer> partitionLabels(String S) {
+    List<Integer> res = new ArrayList<>();
+    while (S.length() != 0) {
+      int temp = S.lastIndexOf(S.charAt(0));
+      // 找最远位置
+      int max = 0;
+      for (int i = 0; i < temp; i++) {
+        max = Math.max(S.lastIndexOf(S.charAt(i)), max);
+        // 用例：“qiejxqfnqceocmy”, 第一次的边界要扩展
+        temp = max;
+      }
+
+      S = S.substring(max + 1);
+      res.add(max + 1);
+    }
+    return res;
+  }
 
 
 

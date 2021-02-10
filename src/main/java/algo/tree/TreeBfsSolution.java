@@ -5,6 +5,7 @@ import utils.TreeNode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * 二叉树广度优先遍历的相关问题
@@ -106,5 +107,54 @@ public class TreeBfsSolution {
       zigzagHelper(node.right, level + 1);
     }
   }
+
+  /**
+   * leetcode 513
+   * 找树左下角的值
+   * 两种方法：BFS / DFS
+   * BFS：每层从右往左遍历，将最后一层的最后一个值返回
+   * DFS：层级level与List的索引相对应，递归从左到右遍历，将每层最左边的节点放入list，返回list最后一个节点的值
+   */
+  public int findBottomLeftValue(TreeNode root) {
+    int lastNodeVal = 0;
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+
+    while(!queue.isEmpty()) {
+      int size = queue.size();
+
+      for (int i = 0; i < size; i++) {
+        TreeNode node = queue.poll();
+        if (i == size - 1) {
+          lastNodeVal = node.val;
+        }
+        if (node.right != null) {
+          queue.offer(node.right);
+        }
+        if (node.left != null) {
+          queue.offer(node.left);
+        }
+      }
+    }
+    return lastNodeVal;
+  }
+
+  public int findBottomLeftValue2(TreeNode root) {
+    List<Integer> list = new ArrayList<>();
+    dfs(root, list, 0);
+    return list.get(list.size()-1);
+  }
+
+  private void dfs(TreeNode node, List<Integer> list, int level) {
+    if (node == null) return;
+
+    if (list.size() == level) {
+      list.add(node.val);
+    }
+
+    dfs(node.left, list, level+1);
+    dfs(node.right, list, level+1);
+  }
+
 
 }
