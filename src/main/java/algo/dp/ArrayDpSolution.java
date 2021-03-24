@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 字符串子序列相关的动态规划问题
  */
-public class ArrayDpSolution {
+public class  ArrayDpSolution {
 
 
   /**
@@ -64,6 +64,31 @@ public class ArrayDpSolution {
       result = Math.max(result, i);
     }
     return result;
+  }
+
+  /**
+   * 方法二
+   * 负数不能作为子数组的开头或结尾
+   * 当子数组累加成负数时，它就没意义了，要立即重置它
+   */
+  public int maxSubArray2(int[] nums) {
+    if(nums.length == 0) return 0;
+
+    int sum = 0;
+    boolean flag = false;
+    int res = Integer.MIN_VALUE;
+
+    for(int i=0; i<nums.length; i++) {
+      if(nums[i] > 0 && !flag) flag = true;
+      sum += nums[i];
+      res = Math.max(res, sum);
+
+      if(sum < 0) {
+        sum = 0;
+        flag = false;
+      }
+    }
+    return res;
   }
 
 
@@ -149,5 +174,4 @@ public class ArrayDpSolution {
     }
     return dp[0][s.length() - 1];
   }
-
 }

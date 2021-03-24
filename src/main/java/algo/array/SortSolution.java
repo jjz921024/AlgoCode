@@ -67,5 +67,18 @@ public class SortSolution {
     return count;
   }
 
+  /**
+   * leetcode 1365 有多少小于当前数字的数字
+   * 升序排序后，你的索引就是有多少个数字小于你
+   * todo
+   */
+  public int[] smallerNumbersThanCurrent(int[] nums) {
+    Arrays.sort(nums);
+    int[] res = new int[nums.length];
+    char c= '2';
+
+    return null;
+  }
+
 
 }

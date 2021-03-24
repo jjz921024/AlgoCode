@@ -2,15 +2,16 @@ package algo.list;
 
 import utils.ListNode;
 
-import java.util.List;
-
+/**
+ * leetcode 61
+ * 旋转链表
+ */
 public class RotateList {
-
 
   // 向左移动k个位置
   public ListNode rotateLeft(ListNode head, int k) {
     if (head == null) return null;
-    else if (head.next == null) return head;
+    if (head.next == null) return head;
 
     ListNode h = head;
     ListNode prev = null;
@@ -35,27 +36,27 @@ public class RotateList {
     return result;
   }
 
-  // 向右移动k个位置 todo
+  // 向右移动k个位置
   public ListNode rotateRight(ListNode head, int k) {
     if (head == null) return null;
-    else if (head.next == null) return head;
+    if (head.next == null) return head;
 
     // 将链表连成环
-    ListNode h = head;
-    while (h.next != null) {
-      h = h.next;
+    ListNode cur = head;
+    int len = 0;
+    while (cur.next != null) {
+      cur = cur.next;
+      len++;
     }
-    h.next = head;
+    cur.next = head;
 
-
-    ListNode prev = null;
-    while (k-- > 0) {
-      prev = head;
-      head.next = head;
+    cur = head;
+    k = len - k % len - 1;
+    while(k-- > 0) {
+      cur = cur.next;
     }
-
-    prev.next = null;
-    return head;
-
+    ListNode res = cur.next;
+    cur.next = null;
+    return res;
   }
 }

@@ -1,5 +1,10 @@
 package algo.matrix;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
+
 /**
  * Created by Jun on 2017/9/15.
  * 子数组的最大累加和/累积 问题
@@ -36,10 +41,5 @@ public class Max {
             max = cur > max ? cur : max;
         }
         return max;
-    }
-
-    public static void main(String[] args) {
-        double[] data = {-1, 4, 0, 3, 0.5, 8, -1};
-        System.out.println(maxProduct(data));
     }
 }

@@ -2,16 +2,16 @@ package algo.hashmap;
 
 import java.util.*;
 
-/**
- * leetcode 1
- * Two Sum问题难点在于数组无序，面对无序数组：
- * 1. 排序后使用双指针
- * 2. 用HashMap或HashSet处理无序数组
- * <p>
- * 若给于有序数组求two sum，则可以使用左右指针 (套用二分查找模板)
- */
 public class NSum {
 
+  /**
+   * leetcode 1
+   * Two Sum问题难点在于数组无序，面对无序数组：
+   * 1. 排序后使用双指针
+   * 2. 用HashMap或HashSet处理无序数组
+   * <p>
+   * 若给于有序数组求two sum，则可以使用左右指针 (套用二分查找模板)
+   */
   public int[] twoSum(int[] nums, int target) {
     HashMap<Integer, Integer> hashMap = new HashMap<>();
     for (int i = 0; i < nums.length; i++) {

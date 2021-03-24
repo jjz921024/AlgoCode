@@ -1,8 +1,14 @@
 package algo.array;
 
-import java.util.Arrays;
-
 public class SearchSolution {
+
+  /**
+   * leetcode 34
+   * 搜索左右边界 todo
+   */
+  /*public int[] searchRange(int[] nums, int target) {
+
+  }*/
 
   /**
    *  leetcode 35 搜索插入位置
@@ -26,35 +32,50 @@ public class SearchSolution {
   }
 
   /**
-   * leetcode 34
-   * 搜索左右边界
-   */
-  /*public int[] searchRange(int[] nums, int target) {
-
-  }*/
-
-  /**
    * leetcode 33
-   * 旋转有序数组，判断是否存在指定数 todo
+   * 旋转有序数组，判断是否存在指定数
+   * 旋转后的数组二分成两部分，肯定有一部分是有序的
+   * 查看以mid为分割出来的两个部分 [l, mid] 和 [mid + 1, r] 哪个部分是有序的
    */
   public int search(int[] nums, int target) {
-    /*int left = 0, right = nums.length - 1;
-    while(left < right) {
-      int mid = left + (right - left) / 2;
-      if (nums[mid] > nums[right]) {
-        left = mid + 1;
-      } else if (nums[mid] < nums[right]) {
-        right = mid;
-      } else {
+    int n = nums.length;
+    if (n == 0) return -1;
+    if (n == 1) return nums[0] == target ? 0 : -1;
+
+    int l = 0, r = n - 1;
+    while (l <= r) {
+      int mid = (l + r) / 2;
+      if (nums[mid] == target) {
         return mid;
       }
-    }*/
+
+      // 重点：要从旋转点分开两部分判断
+      if (nums[0] <= nums[mid]) {
+        // [l, mid-1]部分有序，mid落在前半部分
+        if (nums[0] <= target && target < nums[mid]) {
+          // target也在前半部分
+          r = mid - 1;
+        } else {
+          // target不确定在哪部分，迭代再判断
+          l = mid + 1;
+        }
+      } else {
+        if (nums[mid] < target && target <= nums[n - 1]) {
+          // target在后半部分
+          l = mid + 1;
+        } else {
+          // target不确定在哪部分，迭代再判断
+          r = mid - 1;
+        }
+      }
+    }
     return -1;
   }
 
   /**
-   * leetcode 153 / 154
-   * 旋转有序数组，找最小值  todo
+   * leetcode 153 / 154 (存在重复元素)
+   * 旋转有序数组，找最小值
+   * hits: 画图理解
    */
   public int findMin(int[] nums) {
     int left = 0, right = nums.length - 1;
@@ -71,7 +92,7 @@ public class SearchSolution {
         right = mid;
       } else {
         // 有重复元素时才会走到此分支
-        // 只需
+        // 用例：无旋转情况 [1,3,3]
         right--;
       }
     }
@@ -124,6 +145,37 @@ public class SearchSolution {
       }
     }
     return res;
+  }
+
+  // 区分大于小于1的情况
+  // 精度小于0.01
+  public double mySqrt(double x) {
+    double left, right;
+    if (x < 1) {
+      left = x;
+      right = 1;
+    } else {
+      left = 1;
+      right = x;
+    }
+
+    while (left <= right) {
+      double mid = left + (right - left) / 2.0;
+      double temp = mid * mid;
+      if(Math.abs(temp - x) < 0.01) {
+        return mid;
+      }
+      if (temp < x) {
+        left = mid;
+      } else {
+        right = mid;
+      }
+    }
+    return -1;
+  }
+
+  public static void main(String[] args) {
+    System.out.println(new SearchSolution().mySqrt(0.09));
   }
 
   /**

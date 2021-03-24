@@ -148,6 +148,7 @@ public class QuickSort {
             }
         }
 
+        // 此时low指向是基准元素，mark指向的值小于基准元素
         // 将pivot元素交换到mark指针指向的地方
         array[low] = array[mark];
         array[mark] = pivot;

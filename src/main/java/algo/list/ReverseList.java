@@ -39,39 +39,85 @@ public class ReverseList {
 
 
   /**
+   * leetcode 92
    * 翻转位置从from到to的结点（从1开始计）
-   * todo
    */
-  public static ListNode reversePartList(ListNode head, int from, int to) {
+  public ListNode reversePartList(ListNode head, int from, int to) {
     if (head == null || head.next == null) return head;
-    if (from >= to) return head;
 
-    ListNode cur = head;
-    ListNode prev = null;
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
 
-    ListNode start = head;
-    ListNode end = null;
-
-    for (int i = 1; i < from; i++) {
-      cur = cur.next;
+    // 遍历到左侧节点的前一个位置
+    ListNode prev = dummy;
+    for (int i = 0; i < from - 1; i++) {
+      prev = prev.next;
     }
 
-    // 翻转链表
+    // 遍历到右侧节点
+    ListNode rightNode = prev;
     for (int i = from; i <= to; i++) {
-
+      rightNode = rightNode.next;
     }
 
-    // 从头节点开始翻转的情况
-    if (from == 1) {
+    // 截断链表
+    ListNode leftNode = prev.next;
+    ListNode temp = rightNode.next;
 
-    }
-    return head;
+    prev.next = null;
+    rightNode.next = null;
+
+    // 反转
+    reverse(leftNode);
+
+    // 拼接回原链表
+    prev.next = rightNode;
+    leftNode.next = temp;
+
+    // 不能直接返回head
+    return dummy.next;
   }
 
+  // 方法二
+  public ListNode reversePartList2(ListNode head, int left, int right) {
+    if(head == null || head.next == null) return head;
+
+    ListNode dummy = new ListNode(-1);
+    dummy.next = head;
+
+    // 走到待反转节点的前一位
+    ListNode cur = dummy;
+    while(left-- > 1) {
+      cur = cur.next;
+      right--;
+    }
+    ListNode l = cur;
+
+    // 走到最后一个待反转节点
+    while(right-- > 0) {
+      cur = cur.next;
+    }
+    ListNode r = cur;
+
+    // 截断待反转链表
+    ListNode temp = l.next;
+    l.next = null;
+
+    ListNode tail = r.next;
+    r.next = null;
+
+    // 反转后的头节点是h
+    ListNode h = reverse(temp);
+
+    // 拼接
+    l.next = h;
+    temp.next = tail;
+
+    return dummy.next;
+  }
 
   /**
    * leetcode 24 两两交换链表中相邻节点  (2个一组反转链表)
-   *
    */
   public ListNode swapPairs(ListNode head) {
     if (head == null || head.next == null) return head;
@@ -84,5 +130,50 @@ public class ReverseList {
 
     n2.next = n1;
     return n2;
+  }
+
+  /**
+   * k个一组翻转链表
+   */
+  public ListNode reverseGroup(ListNode head, int k) {
+    if (head == null) return null;
+
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    ListNode prev = dummy;
+
+    while (head != null) {
+      ListNode tail = prev;
+      for (int i = 0; i < k; i++) {
+        tail = tail.next;
+        if (tail == null) {
+          return dummy.next;
+        }
+      }
+
+      ListNode next = tail.next;
+      ListNode[] reverse = reverseBetween(head, tail);
+      head = reverse[0];
+      tail = reverse[1];
+
+      prev.next = head;
+      tail.next = next;
+      prev = tail;
+      head = tail.next;
+    }
+
+    return dummy.next;
+  }
+
+  public ListNode[] reverseBetween(ListNode head, ListNode tail) {
+    ListNode prev = tail.next;
+    ListNode p = head;
+    while (prev != tail) {
+      ListNode next = p.next;
+      p.next = prev;
+      prev = p;
+      p = next;
+    }
+    return new ListNode[]{tail, head};
   }
 }

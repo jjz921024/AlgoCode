@@ -1,10 +1,12 @@
 package algo.tree;
 
+import utils.ListNode;
 import utils.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * 利用二叉搜索树中序遍历的性质
@@ -134,4 +136,43 @@ public class BstMidOrderSolution {
     set.add(node.val);
     midOrderTs(node.right);
   }
+
+
+  /**
+   * leetcode 312
+   * 二叉树非递归方式的中序遍历
+   */
+  class BSTIterator {
+    private Stack<TreeNode> stack;
+
+    public BSTIterator(TreeNode root) {
+      stack = new Stack<>();
+      _leftmostInorder(root);
+    }
+
+    // 先让左节点全部进栈
+    private void _leftmostInorder(TreeNode root) {
+      while (root != null) {
+        this.stack.push(root);
+        root = root.left;
+      }
+    }
+
+
+    public int next() {
+      TreeNode pop = stack.pop();
+      // 参考二叉树非递归方式的中序遍历
+      if (pop.right != null) {
+        // note!!
+        _leftmostInorder(pop.right);
+      }
+      return pop.val;
+    }
+
+    public boolean hasNext() {
+      return !stack.isEmpty();
+    }
+  }
+
+
 }

@@ -47,4 +47,58 @@ public class SearchBST {
     }
     return res;
   }
+
+  /**
+   * leetcode 701 二叉搜索树中的插入操作
+   * 假定不会插入已存在元素
+   */
+  public TreeNode insertIntoBST(TreeNode root, int val) {
+    // 找到空位置插入新节点
+    if (root == null) return new TreeNode(val);
+
+    if (root.val < val)
+      // 根节点小于val，往右子树插
+      root.right = insertIntoBST(root.right, val);
+    if (root.val > val)
+      root.left = insertIntoBST(root.left, val);
+    return root;
+  }
+
+  /**
+   * leetcode 450 删除二叉搜索树中的节点
+   * 情况1：要删除的节点是叶子节点，直接置为空
+   * 情况2：要删除的节点有一个非空子节点，让子节点替换
+   * 情况3：有两个子节点，找到左子树中最大的节点 或者 右子树中最小的节点来接替自己
+   */
+  public TreeNode deleteNode(TreeNode root, int key) {
+    if (root == null) return null;
+    if(root.val == key) {
+      // 找到要删除的节点了，区分三种情况
+
+      // 包含了情况1和2
+      if(root.left == null) return root.right;
+      if(root.right == null) return root.left;
+
+      // 情况3
+      TreeNode minNode = getMin(root.right);
+      root.val = minNode.val;
+      root.right = deleteNode(root.right, minNode.val);
+
+    } else if(root.val > key) {
+      // 去左子树找
+      root.left = deleteNode(root.left, key);
+    } else if(root.val < key) {
+      // 去右子树找
+      root.right = deleteNode(root.right, key);
+    }
+    return root;
+  }
+
+  private TreeNode getMin(TreeNode node) {
+    // BST 最左边的就是最小的
+    while (node.left != null) node = node.left;
+    return node;
+  }
+
+
 }

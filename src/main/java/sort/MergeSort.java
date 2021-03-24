@@ -1,6 +1,11 @@
 package sort;
 
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Stack;
+
 /**
  * 二路归并排序
  * 1. 分组，将待排序元素逐层折半分组，直到每组只有一个元素为止
@@ -14,9 +19,9 @@ package sort;
  * <p>
  * <p>
  * 时间复杂度  平均：O(nlogn), 最差：O(nlogn) 最佳：O(nlogn)
- *             若集合长度为n, 则折半层数为logn, 每层操作运算量为n
+ * 若集合长度为n, 则折半层数为logn, 每层操作运算量为n
  * 空间复杂读  O(n)
- *            每层需要创建的额外空间为n，但额外空间会随着方法调用结束而释放，不应该累加
+ * 每层需要创建的额外空间为n，但额外空间会随着方法调用结束而释放，不应该累加
  * 稳定性：稳定
  */
 public class MergeSort {
@@ -57,7 +62,7 @@ public class MergeSort {
 
         // 每次小集合归并完成后，复制回原数组，start标识小集合位置
         for (int i = 0; i < tempArray.length; i++) {
-            array[i+start] = tempArray[i];
+            array[i + start] = tempArray[i];
         }
     }
 

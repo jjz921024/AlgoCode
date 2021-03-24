@@ -92,6 +92,7 @@ public class TreeIterator {
 
     /**
      * 非递归方法， 后序遍历
+     * 前序遍历 中左右 -> 调整顺序 中右左  —> 倒序输出 左右中 后序
      */
     public static void posOrder2(TreeNode head) {
         if (head == null)
@@ -115,6 +116,31 @@ public class TreeIterator {
         // 输出结果
         while (!result.empty()) {
             System.out.println(result.pop());
+        }
+        System.out.println();
+    }
+
+    // 迭代 后序遍历 方法二
+    public static void posOrder3(TreeNode root) {
+        if (root == null)
+            return;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode prev = null;
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (root.right == null || root.right == prev) {
+                System.out.print(root.getValue() + " ");
+
+                prev = root;
+                root = null;
+            } else {
+                stack.push(root);
+                root = root.right;
+            }
         }
         System.out.println();
     }
@@ -143,10 +169,11 @@ public class TreeIterator {
     }
 
 
-
+    /**
+     * 层次遍历，逐层返回二维数组
+     */
     List<List<Integer>> levels = new ArrayList<>();
 
-    // 层次遍历，逐层返回二维数组
     public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) return levels;
         helper(root, 0);
